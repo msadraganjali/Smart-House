@@ -1,0 +1,101 @@
+{% extends "account/base.html" %}
+<!-- form sakhte khane -->
+{% block content %}
+{% load static %}
+<div style="background-color: #eee; font-family: 'Vazir' !important; text-align: right;">
+  <br>
+  <section class="vh-100">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-12 col-xl-11">
+          <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+              <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                  <!-- title forme sabte khane -->
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">ثبت خانه</p>
+                  <!-- gozashtane csrf_token -->
+                  <form class="mx-1 mx-md-4" method="post" action="{% url 'home:send' %}">{% csrf_token %}
+                    <!-- fielde mantaghe gamayi -->
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="locate">:منطقه گرمایی</label>
+                        <select name="locate" id="locate" class="form-select">
+                          <option value="معمولی">معمولی</option>
+                          <option value="گرمایی۱">گرمایی۱</option>
+                          <option value="گرمایی۲">گرمایی۲</option>
+                          <option value="گرمایی۳">گرمایی۳</option>
+                          <option value="گرمایی۵">گرمایی۴</option>
+                        </select>
+                        <p>{{ forms.locate.errors | first }}</p>
+                      </div>
+                    </div>
+                    <!-- fielde kode posti -->
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="pccode">کدپستی</label>
+                        <input type="pccode" id="pccode" class="form-control" name="pccode" />
+                        <p>{{ forms.pccode.errors | first }}</p>
+                      </div>
+                    </div>
+                    <!-- shomare kontore bargh -->
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="electricity_number">:شماره‌کنتربرق</label>
+                        <input type="electricity_number" id="electricity_number" class="form-control"
+                          name="electricity_number" />
+                        <p>{{ forms.electricity_number.errors | first }}</p>
+                      </div>
+                    </div>
+                    <!-- shomare kontore ab -->
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="whater_number">:شماره‌کنترآب</label>
+                        <input type="whater_number" id="whater_number" class="form-control" name="whater_number" />
+                        <p>{{ forms.whater_number.errors | first }}</p>
+                      </div>
+                    </div>
+                    <!-- shomare kontore gaz -->
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="gaz_number">:شماره‌کنترگاز</label>
+                        <input type="gaz_number" id="gaz_number" class="form-control" name="gaz_number" />
+                        <p>{{ forms.gaz_number.errors | first }}</p>
+                      </div>
+                    </div>
+                    <!-- passworde khane -->
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="password">:کلمه عبور</label>
+                        <input type="password" id="password" class="form-control" name="password" />
+                        <p>{{ forms.password.errors | first }}</p>
+                      </div>
+                    </div>
+                    <!-- taahod be ghavanin -->
+                    <div class="form-check d-flex justify-content-center mb-4">
+                      <li style="direction: rtl"><u><i><b>من تمام شرایط ارایه خدمات را می‌پذیرم!</b></i></u></p>
+                    </div>
+                    <!-- dokme ersal -->
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                      <button type="submit" class="btn btn-primary btn-lg">ارسال</button>
+                    </div>
+  
+                  </form>
+  
+                </div>
+                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                  <!-- load kardan image -->
+                  <img
+                  src="{% static 'img/smart-house.gif' %}"
+                  class="img-fluid" alt="Sample image">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br><br><br><br><br><br><br><br>
+</div>
+{% endblock content %}

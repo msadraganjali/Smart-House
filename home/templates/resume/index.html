@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head -->
+
+<head>
+  {% load static %}
+  <title>Sadra Ganjali</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <meta name="keywords" content="Sadra Ganjali" />
+  <!-- css -->
+  <!-- load kardan font ha -->
+  <link rel="stylesheet" href="{% static 'resume/css/font-awesome.min.css' %}" />
+  <!-- //load kardan font ha -->
+  <link
+    href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet" />
+  <link href="//fonts.googleapis.com/css?family=Yanone+Kaffeesatz:200,300,400,700" rel="stylesheet" />
+  <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'resume/css/style.css' %}" type="text/css" media="all" />
+  <link rel="stylesheet" href="{% static 'resume/css/bootstrap.min.css' %}" type="text/css" media="all" />
+  <!-- JavaScript-File haye pishfarz. -->
+  <script type="text/javascript" src="{% static 'resume/js/jquery-2.1.4.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'resume/js/bootstrap.min.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/font.css' %}">
+  <!-- // JavaScript-File haye pishfarz. -->
+</head>
+
+<body>
+  <!-- banner -->
+  <!-- /home -->
+  <!-- ghesmate meno baray skorol -->
+  <div class="w3-banner-top" id="home">
+    <div class="agileinfo-dot">
+      <div class="w3layouts_menu">
+        <nav class="cd-stretchy-nav edit-content">
+          <a class="cd-nav-trigger" href="#0">
+            Menu <span aria-hidden="true"></span>
+          </a>
+          <ul>
+            <li>
+              <a href="#home" class="scroll"><span>Home</span></a>
+            </li>
+            <li>
+              <a href="#about" class="scroll"><span>About</span></a>
+            </li>
+            <li>
+              <a href="#skills" class="scroll"><span>Skills</span></a>
+            </li>
+            <li>
+              <a href="#projects" class="scroll"><span>Projects</span></a>
+            </li>
+            <li>
+              <a href="#contact" class="scroll"><span>Contact</span></a>
+            </li>
+          </ul>
+          <span aria-hidden="true" class="stretchy-nav-bg"></span>
+        </nav>
+      </div>
+
+      <!-- ghesmat morabaei shekele samt chap ke daraye etelaat + aks ast -->
+      <div class="w3-banner-grids">
+        <div class="col-md-6 w3-banner-grid-left">
+          <div class="w3-banner-img">
+            <img src="{% static 'resume/images/profile.jpg' %}" alt="img" />
+            <h3 class="test">Sadra Ganjali</h3>
+            <p class="test">FullStack Developer</p>
+          </div>
+          <div class="col-md-0 w3-banner-grid-left "
+            style="text-align: center; margin-top: 2%;font-family: 'Vazir' !important;"><a href="{% url 'home:index' %}"
+              class="btn btn-info btn-lg">بازگشت به خانه</a></div>
+        </div>
+        <!-- shesmate etelaat man  -->
+        <div class="col-md-6 w3-banner-grid-right">
+          <div class="w3-banner-text" style="text-align: center; margin-right: 20%;">
+            <h3 style="letter-spacing: normal; font-family: 'Vazir' !important;">هدف بعدی</h3>
+            <p class="font-fa">تمرکز بر frontend و تبدیل شدن به fullstack developer و ارتقا زبان انگلیسی</p>
+          </div>
+          <div class="w3-right-addres-1" style="direction: rtl; margin-right: 50%;">
+            <ul class="address">
+              <li>
+                <ul class="agileits-address-text">
+                  <li style="font-family: 'Vazir' !important;" class="agile-it-adress-left"><b>تاریخ تولد</b></li>
+                  <li><span>:</span>1389/3/18</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="agileits-address-text">
+                  <li style="font-family: 'Vazir' !important;" class="agile-it-adress-left"><b>شماره‌مبایل</b></li>
+                  <li><span>:</span>(+98) 902 256 2088</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="agileits-address-text">
+                  <li style="font-family: 'Vazir' !important;" class="agile-it-adress-left"><b>آدرس</b></li>
+                  <li><span>:</span>Iran, Esfahan, Shahid Ehsani High School</li>
+                </ul>
+              </li>
+              <li>
+                <ul class="agileits-address-text">
+                  <li style="font-family: 'Vazir' !important;" class="agile-it-adress-left"><b>ایمیل</b></li>
+                  <li>
+                    <span>:</span><a href="mailto:sadraganjali@mail.com">sadraganjali@gmail.com</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+    <div class="thim-click-to-bottom">
+      <a href="#about" class="scroll">
+        <i class="fa fa-chevron-down"></i>
+      </a>
+    </div>
+  </div>
+  <!-- ghesmate darbare man -->
+  <div class="w3-about" id="about">
+    <div class="container">
+      <div class="w3-about-head" style="font-family: 'Vazir';">
+        <h3>درباره‌ی من</h3>
+      </div>
+      <div class="w3-about-grids">
+        <div class="w3-about-grids1">
+          <div class="col-md-6 w3-about-grid-left1">
+            <img src="{% static 'resume/images/WhatsApp Image 2022-09-17 at 9.20.32 PM.jpeg' %}" alt="img1" />
+          </div>
+          <div class="col-md-6 w3-about-grid-right1">
+            <h3 class="font-fa">چیز هایی که باید از من بدانید:</h3>
+            <p class="font-fa">
+              برنامه‌نویسی را از 1399/9/9 شروع کردم و تا کنون بر زبان های html ,javascript, php, python, django مسلط
+              می‌باشم.
+            </p>
+            <h5>My Projects count:</h5>
+            <div class="w3-about-grid-small-border">
+              <div class="col-md-4 w3-about-grid-small">
+                <h3 class="w3-head-project">01</h3>
+                <h5>JavaScript projects</h5>
+              </div>
+              <div class="col-md-4 w3-about-grid-small">
+                <h3 class="w3-head-project">01</h3>
+                <h5>Python/Django projects</h5>
+              </div>
+              <div class="col-md-4 w3-about-grid-small">
+                <h3 class="w3-head-project">02</h3>
+                <h5>PHP projects</h5>
+                <div class="clearfix"></div>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+          <!-- edame ghesmate darbare man -->
+          <div class="w3-about-grids2">
+            <div class="col-md-6 w3-about-grid-left2">
+              <h3 class="font-fa">اطلاعات شخصی و موقعیت مکانی:</h3>
+              <p class="font-fa">
+                من در اسیا و کشور ایران و استان اصفهان و شهر اصفهان زندگی میکنم من متولد 1389 هستم و کلاس 7 در دبیرستان
+                شهید احسانی مشغول تحصیل هستم.
+              </p>
+              <h4><a href="#home" class="scroll font-fa">بیشتر</a></h4>
+            </div>
+            <div class="col-md-6 w3-about-grid-right2">
+              <img src="{% static 'resume/images/ab7.jpg' %}" alt="img1" />
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ghesmate tavayi haye man -->
+  <div class="skills" id="skills">
+    <div class="container">
+      <div class="title-w3ls">
+        <h4>توانایی های من</h4>
+      </div>
+      <div class="skills-bar">
+        <div class="col-md-20 w3-agile-skills-grid">
+          <section class="bar">
+            <section class="wrap">
+              <div class="wrap_right">
+                <div class="bar_group">
+                  <input type="hidden" class="bar_group__bar thin" label="" show_values="true" tooltip="true"
+                    value="100"></input>
+                  <div class="bar_group__bar thin" label="HTML" show_values="true" tooltip="true" value="80"></div>
+                  <div class="bar_group__bar thin" label="CSS" show_values="true" tooltip="true" value="50"></div>
+                  <div class="bar_group__bar thin" label="JavaScript" show_values="true" tooltip="true" value="60">
+                  </div>
+                  <div class="bar_group__bar thin" label="Django( Python Framework )" show_values="true" tooltip="true"
+                    value="85"></div>
+                  <div class="bar_group__bar thin" label="PHP" show_values="true" tooltip="true" value="65"></div>
+                  <div class="bar_group__bar thin" label="Python" show_values="true" tooltip="true" value="80"></div>
+                </div>
+              </div>
+              <div class="clearfix"></div>
+            </section>
+          </section>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ghesmate proje ha -->
+  <div class="main-content">
+    <div class="gallery" id="projects">
+      <div class="w3-gallery-head">
+        <h3>پروژه های من</h3>
+      </div>
+      <div class="container">
+        <div class="gallery_gds">
+          <ul class="simplefilter">
+            <li class="active" data-filter="all" style="font-family: 'Vzir' !important; letter-spacing: normal !important;">همه</li>
+            <li data-filter="1">PHP</li>
+            <li data-filter="2">python/django</li>
+            <li data-filter="3">JavaScript</li>
+          </ul>
+          <div class="filtr-container" style="padding: 0px; position: relative; height: 858px">
+            <div class="col-md-4 col-ms-6 jm-item first filtr-item" data-category="1, 5" data-sort="Busy streets" style="
+                  opacity: 1;
+                  transform: scale(1) translate3d(0px, 0px, 0px);
+                  backface-visibility: hidden;
+                  perspective: 1000px;
+                  transform-style: preserve-3d;
+                  position: absolute;
+                  transition: all 0.5s ease-out 0ms;
+                ">
+              <div class="jm-item-wrapper">
+                <div class="jm-item-image">
+                  <img src="{% static 'resume/images/9650783.547db70eefd15.png' %}" alt="property" />
+                  <span class="jm-item-overlay"> </span>
+                  <div class="jm-item-button">
+                    <a style="letter-spacing: normal !important; font-family: 'Vazir' !important;" href="#" data-toggle="modal" data-target="#myModal1">دیدن جزیات</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-ms-6 jm-item first filtr-item" data-category="2, 5" data-sort="Luminous night"
+              style="
+                  opacity: 1;
+                  transform: scale(1) translate3d(380px, 0px, 0px);
+                  backface-visibility: hidden;
+                  perspective: 1000px;
+                  transform-style: preserve-3d;
+                  position: absolute;
+                  transition: all 0.5s ease-out 0ms;
+                ">
+              <div class="jm-item-wrapper">
+                <div class="jm-item-image">
+                  <img src="{% static 'resume/images/a0d66e87-88d1-4b81-bf92-dca408134143.png' %}" alt="property" />
+                  <span class="jm-item-overlay"> </span>
+                  <div class="jm-item-button">
+                    <a style="letter-spacing: normal !important; font-family: 'Vazir' !important;" href="#" data-toggle="modal" data-target="#myModal2">دیدن جزیات</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-ms-6 jm-item first filtr-item" data-category="1, 4" data-sort="City wonders" style="
+                  opacity: 1;
+                  transform: scale(1) translate3d(760px, 0px, 0px);
+                  backface-visibility: hidden;
+                  perspective: 1000px;
+                  transform-style: preserve-3d;
+                  position: absolute;
+                  transition: all 0.5s ease-out 0ms;
+                ">
+              <div class="jm-item-wrapper">
+                <div class="jm-item-image">
+                  <img src="{% static 'resume/images/download.png' %}" alt="property" />
+                  <span class="jm-item-overlay"> </span>
+                  <div class="jm-item-button">
+                    <a style="letter-spacing: normal !important; font-family: 'Vazir' !important;" href="#" data-toggle="modal" data-target="#myModal3">دیدن جزیات</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-ms-6 jm-item first filtr-item" data-category="3, 4" data-sort="In production"
+              style="opacity: 1; transform: scale(1) translate3d(0px, 286px, 0px); backface-visibility: hidden; perspective: 1000px; transform-style: preserve-3d; position: absolute; transition: all 0.5s ease-out 0ms;">
+              <div class="jm-item-wrapper">
+                <div class="jm-item-image">
+                  <img src="{% static 'resume/images/67-300x186.webp' %}" alt="property" />
+                  <span class="jm-item-overlay"> </span>
+                  <div class="jm-item-button"><a href="#" data-toggle="modal" data-target="#myModal4">دیدن جزیات</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <button type="button" class="close" data-dismiss="modal">
+        &times;
+      </button>
+      <div class="w3ls-property-images">
+        <img src="{% static 'resume/images/70-702790_s.jpg' %}" alt="image" />
+      </div>
+
+      <div class="ins-details">
+        <div class="ins-name">
+          <h3 class="font-fa">بخشی از یک سایت</h3>
+          <p class="font-fa">
+            در این قسمت اولین اخبار 10خبرگذاری برتر کشور توسط XML خبرگذاریها با زبان PHP گرفته شده و در سایت نمایش داده
+            میشود.جهت استفاده اسان تر صورت Category به کاربران ارایه میشود.
+          </p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <button type="button" class="close" data-dismiss="modal">
+        &times;
+      </button>
+      <div class="w3ls-property-images w3-pop1-img2">
+        <img src="{% static 'resume/images/Token_logo-1.png' %}" alt="image" />
+      </div>
+
+      <div class="ins-details">
+        <div class="ins-name">
+          <h3 class="font-fa">بخشی از سایت نسیبا</h3>
+
+          <p class="font-fa">
+            این بخش از سایت فقط backend هست و view ندارد. که این بخش برای فیلم و سینما ها مورد استفاده قرار میگیرد. این
+            برنامه موقع اجرا از سایت نسیبا تراکنش ها دریافت کرده و به دارندگان تراکنش sms ارسال میکندکه در واقع کد ان ها
+            برای بلیط است این برنامه سرفا برای سینما ها استفاده نمیشود و در صورت نیاز با دادن ادرس به وسیله ی httpi
+            میتواند برای کار های دیگر نیز استفاده شود.
+          </p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModal3" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <button type="button" class="close" data-dismiss="modal">
+        &times;
+      </button>
+      <div class="w3ls-property-images w3-pop1-img3">
+        <img src="{% static 'resume/images/the-biography-channel-logo-png-transparent.png' %}" alt="image" />
+      </div>
+
+      <div class="ins-details">
+        <div class="ins-name">
+          <h3 class="font-fa">یک سایت کامل:Bioche.ir</h3>
+
+          <p>
+            در این سایت هر کس میتواند برای خودش صفحه ای ایجاد کند که در واقع رزومه آن شخص مبنی بر اطلاعات اعلامی شده
+            توسط خودش میباشد و اینکه در این صفحات میتوان پورت فولیو و اسکیل نیز نمایش داد که اختیاری است و میتواند صفحه
+            را برای دیگران به اشتراک بگذارد
+            <br>
+            Address:Bioche.ir
+          </p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="myModal4" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <button type="button" class="close" data-dismiss="modal">
+        &times;
+      </button>
+      <div class="w3ls-property-images w3-pop1-img4">
+        <img src="{% static 'resume/images/best_websites_to_learn_the_quran_in_2021.webp' %}" alt="image" />
+      </div>
+
+      <div class="ins-details">
+        <div class="ins-name">
+          <h3 class="font-fa">یک سایت کامل:Azbarsho</h3>
+
+          <p class="font-fa">
+            Azbarsho یک سایت حفظ قرآن برای کاربران است .که با روش و الگوریتم جعبه لایتنر حفظ قرآن رو خیلی راحت تر میکنه.
+            که این سایت قابلیت تبدیل به اپلیکیشن نیز دارد که حتی به صورت افلاین نیز کار میکند.
+          </p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  <script src="{% static 'resume/js/jquery.filterizr.js' %}"></script>
+
+  <!-- rahandazi  filterizr-->
+  <script type="text/javascript">
+    $(function () {
+      // rahandazi filter ba gozine haye pishfarz
+      $(".filtr-container").filterizr();
+    });
+  </script>
+
+  <!-- ghemate ertebat ba man -->
+  <div class="contact" id="contact">
+    <div class="container">
+      <div class="w3ls-heading">
+        <h3>ارتباط با من</h3>
+      </div>
+      <div class="contact-w3ls">
+        <form action="#" method="post">
+          <div class="col-md-7 col-sm-7 contact-left agileits-w3layouts">
+            <input type="text" name="First Name" Voluptatem Accusantium Doloremque placeholder="Name" required />
+            <input type="email" class="email" name="Email" placeholder="Email" required />
+            <input type="text" name="Number" placeholder="Mobile Number" required />
+          </div>
+          <div class="col-md-5 col-sm-5 contact-right agileits-w3layouts">
+            <textarea name="Message" placeholder="Message" required></textarea>
+            <input type="submit" value="Submit" />
+          </div>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- ghesmate footer -->
+  <div class="w3l_footer">
+    <div class="container">
+      <div class="w3ls_footer_grids">
+        <div class="w3ls_footer_grid">
+          <div class="col-md-4 w3ls_footer_grid_left">
+            <div class="w3ls_footer_grid_leftl">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+            </div>
+            <div class="w3ls_footer_grid_leftr" style="font-family: 'Vazir' !important;">
+              <h4>آدرس</h4>
+              <p>Iran, Esfahan, Shahid Ehsani High School</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="col-md-4 w3ls_footer_grid_left">
+            <div class="w3ls_footer_grid_leftl">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+            </div>
+            <div class="w3ls_footer_grid_leftr" style="font-family: 'Vazir' !important;">
+              <h4>ایمیل</h4>
+              <a href="mailto:info@example.com">sadraganjali@gmail.com</a>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div style="letter-spacing: normal !important;" class="col-md-4 w3ls_footer_grid_left">
+            <div class="w3ls_footer_grid_leftl">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+            </div>
+            <div class="w3ls_footer_grid_leftr" style="font-family: 'Vazir' !important;">
+              <h4>تماس‌با‌من</h4>
+              <p>(+98) 902 256 2088</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+    <div class="w3l_footer_pos">
+      <p style="font-family: 'Vazir' !important; direction: rtl;">© 2023 کلیه حقوق مادی و معنوی این سورس متعلق به <a href="{% url 'home:index' %}" target="_blank">smart_home</a> می
+        باشد.</p>
+		</div>
+  </div>
+  <script src="{% static 'resume/js/bars.js' %}"></script>
+  <!-- shoroei smoth-scrolling -->
+  <script src="{% static 'resume/js/SmoothScroll.min.js' %}"></script>
+  <!-- efecte matn -->
+  <script type="text/javascript" src="{% static 'resume/js/jquery.transit.js' %}"></script>
+  <script type="text/javascript" src="{% static 'resume/js/jquery.textFx.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script> 
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $(".test").textFx({
+        type: "fadeIn",
+        iChar: 100,
+        iAnim: 1000,
+      });
+    });
+  </script>
+  <!-- ghesmate menu-js -->
+  <script src="{% static 'resume/js/modernizr.js' %}"></script>
+  <script src="{% static 'resume/js/menu.js' %}"></script>
+
+  <script type="text/javascript" src="{% static 'resume/js/move-top.js' %}"></script>
+
+  <script type="text/javascript" src="{% static 'resume/js/easing.js' %}"></script>
+  <script type="text/javascript">
+    jQuery(document).ready(function ($) {
+      $(".scroll").click(function (event) {
+        event.preventDefault();
+        $("html,body").animate(
+          { scrollTop: $(this.hash).offset().top },
+          1000
+        );
+      });
+    });
+  </script>
+  <!-- ghemate smoth-scrolling -->
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $().UItoTop({ easingType: "easeOutQuart" });
+    });
+  </script>
+</body>
+
+</html>

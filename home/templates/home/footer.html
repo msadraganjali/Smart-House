@@ -1,0 +1,101 @@
+{% extends "home/base_footer.html" %}
+<!-- ghemate footer site ke dar hame ye safahat import mishe -->
+{% block content %}
+<footer style="direction: ltr !important;" id="myFooter">
+  <footer id="myFooter" style="font-family: 'Vazir' !important">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3">
+          <!-- logo ye site -->
+          <img
+            src="data:image/png;base64,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"
+            alt="">
+        </div>
+        <!-- ghesmate dastresi sarie -->
+        <div class="col-sm-2">
+          <h5 style="font-family: 'Vazir';">دسترسی سریع</h5>
+          <ul>
+            <!-- link ha -->
+            <li><a href="{% url 'home:index' %}">صفحه نخست</a></li>
+            <li><a href="{% url 'login' %}">ورود به سایت</a></li>
+            <li><a href="{% url 'register' %}">ثبت نام در سایت</a></li>
+            <li><a href="{% url 'home:send' %}">ثبت خانه</a></li>
+            <li><a href="{% url 'profile' %}">پروفایل</a></li>
+            <li><a href="{% url 'home:guide' %}">راهنما استفاده ازسایت</a></li>
+            <li><a href="{% url 'home:about_me' %}">درباره‌ی من</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2">
+          <!-- yek seri link kham (faghat baraye por mohtava bodan footer) -->
+          <h5 style="font-family: 'Vazir';">پشتیبانی</h5>
+          <ul>
+            <li><a href="#">ارسال تیکت</a></li>
+            <li><a href="#">مرکز آموزش</a></li>
+            <li><a href="#">تالار گفتگو</a></li>
+          </ul>
+        </div>
+        <div class="col-sm-3">
+          <div style="margin-left: 26%;" class="social-networks">
+            <!-- yek seri icon kham (faghat baraye por mohtava bodan footer) -->
+            <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+          </div>
+          <button type="button" class="btn btn-default">ما را دنبال کنید</button>
+          <!-- dokme ii ke baraye tozish icon ha ast(ke inha marbot donbal kardan ma ast) -->
+        </div>
+      </div>
+    </div>
+  </footer>
+  <footer>
+    <!-- edame footer site -->
+    <div class="w3l_footer">
+      <div class="container">
+        <div class="w3ls_footer_grids">
+          <div class="w3ls_footer_grid">
+            <div class="col-md-4 w3ls_footer_grid_left">
+              <div class="w3ls_footer_grid_leftl">
+                <i class="fa fa-map-marker" aria-hidden="true"></i>
+              </div>
+              <div class="w3ls_footer_grid_leftr2" style="font-family: 'Vazir' !important; color: white;">
+                <h4>آدرس</h4>
+                <p style="color: #999; text-decoration: none;">Iran, Esfahan, Shahid Ehsani High School</p>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="col-md-4 w3ls_footer_grid_left">
+              <div class="w3ls_footer_grid_leftl">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+              </div>
+              <div class="w3ls_footer_grid_leftr2" style="font-family: 'Vazir' !important; color: white; ">
+                <h4>ایمیل</h4>
+                <a style="color: #999; text-decoration: none;" href="mailto:info@example.com">sadraganjali@gmail.com</a>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="col-md-4 w3ls_footer_grid_left">
+              <div class="w3ls_footer_grid_leftl">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+              </div>
+              <div class="w3ls_footer_grid_leftr2" style="font-family: 'Vazir' !important; color: white;">
+                <h4>تماس‌با‌من</h4>
+                <p style="color: #999; text-decoration: none;">(+98) 902 256 2088</p>
+              </div>
+              <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+  </footer>
+  <!-- neshan dadan hoghogh site -->
+  <footer id="myFooter">
+    <div class="footer-copyright">
+      <p style="font-family: 'Vazir' !important; direction: rtl;">© 2023 کلیه حقوق مادی و معنوی این سورس متعلق به <a href="{% url 'home:index' %}" target="_blank">smart_home</a> می
+        باشد.</p>
+    </div>
+  </footer>
+
+</footer>
+{% endblock content %}

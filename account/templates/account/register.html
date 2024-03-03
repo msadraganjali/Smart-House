@@ -1,0 +1,82 @@
+{% extends "account/base.html" %}
+{% block content %}
+<!-- forme register kardan karbar -->
+{% load static %}
+<div style="background-color: #eee; font-family: 'Vazir' !important; text-align: right;">
+  <section class="vh-100">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-lg-12 col-xl-11">
+          <div class="card text-black" style="border-radius: 25px;">
+            <div class="card-body p-md-5">
+              <div class="row justify-content-center">
+                <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                  <!-- title marbot be form -->
+                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">ثبت نام</p>
+  
+                  <form class="mx-1 mx-md-4" method="post" action="{% url 'register' %}">{% csrf_token %}
+                    <!-- fielde username karbar -->
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="username">:نام کاربری</label>
+                        <input type="text" id="username" class="form-control {% if form.nid.errors %} is-invalid {% endif %} " name="username" />
+                        <p class="invalid-feedback" style="color: 'red'; direction: rtl;">{{ form.username.errors | first }}</p>
+                      </div>
+                    </div>
+                    <!-- field kodemeli -->
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="nid">:کدملی</label>
+                        <input type="nid" id="nid" class="form-control {% if form.nid.errors %} is-invalid {% endif %} " name="nid" />
+                        <p class="invalid-feedback" style="color: 'red'; direction: rtl;">{{ form.nid.errors | first }}</p>
+                      </div>
+                    </div>
+                    <!-- field kalame oboor -->
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="password1">:کلمه عبور</label>
+                        <input type="password" id="password1" class="form-control {% if form.password1.errors %} is-invalid {% endif %} " name="password1" />
+                        <p class="invalid-feedback" style="color: 'red'; direction: rtl;">{{ form.password1.errors | first }}</p>
+                      </div>
+                    </div>
+                    <!-- field kalame oboor2(tekrar) -->
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="password2">:تکرار کلمه عبور</label>
+                        <input type="password" id="password2" class="form-control {% if form.password2.errors %} is-invalid {% endif %} " name="password2" />
+                        <p class="invalid-feedback" style="color: 'red'; direction: rtl;">{{ form.password2.errors | first }}</p>
+                      </div>
+                    </div>
+                    <!-- taahod -->
+                    <div class="form-check d-flex justify-content-center mb-4">
+                      <li style="direction: rtl"><u><i><b>من تمام شرایط ارایه خدمات را می‌پذیرم!</b></i></u></p>
+                    </div>
+  
+                    <div class="form-check d-flex justify-content-center mb-4">
+                      <!-- link kardan be safhe login -->
+                      <li style="direction: rtl"><u><i> حساب‌کاربری‌دارید؟ <a
+                              href="{% url 'login' %}">واردشوید.</a></i></u></p>
+                    </div>
+                    <!-- button submit kardan karbar -->
+                    <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                      <button type="submit" class="btn btn-primary btn-lg">ثبت نام</button>
+                    </div>
+  
+                  </form>
+  
+                </div>
+                <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
+                  <!-- load kardan aks -->
+                  <img
+                    src="{% static 'img/login.png' %}"
+                    class="img-fluid" alt="Sample image">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock content %}

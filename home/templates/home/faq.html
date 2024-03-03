@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #eee;">
+<!-- safhe rahnamayeei -->
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sadra Ganjali</title>
+  <!-- load kardan font va bootstrap -->
+  <link rel="stylesheet" href="{% static 'css/font.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body style="background-color: #eee; font-family: 'Vazir' !important;">
+  <!-- navbar site -->
+  <div class="container py-5" style="background-color: #eee;">
+    <div class="row">
+      <div class="col">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav" style="padding-top: 4px; font-size: 18px; text-decoration: none !important;">
+                <ol class="breadcrumb bg-light">
+                  <li class="breadcrumb-item"><a href="{% url 'home:about_me' %}">درباره‌ی من</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'home:guide' %}">راهنمایی</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'home:index' %}">خانه</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'blog:list' %}">وبلاگ</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'shop:list' %}">فروشگاه</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">سوالات پر‌تکرار</li>
+                </ol>
+              </ul>
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <!-- age karbar login karde bashe -->
+              {% if user.is_authenticated %}
+              <a style="font-size: 18px;" href="http://localhost:8000/admin/logout/"
+                class="btn btn-danger mr-2">خروج</a>
+              <a style="font-size: 18px;" href="{% url 'profile' %}" class="btn btn-info">پروفایل</a>
+            </div>
+            <!-- dar gheyre in sorat -->
+            {% else %}
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a href="{% url 'login' %}" class="btn btn-warning" style="font-size: 18px;">ورود</a>
+              <a href="{% url 'register' %}" class="btn btn-success" style="font-size: 18px;">ثبت‌نام</a>
+            </div>
+            {% endif %}
+          </div>
+        </nav>
+        <!-- title safhe -->
+        <div style="margin-top: 70px; direction: rtl; text-align: center; font-size: 2rem; color: #334155;">
+          <p>
+            «سوالات پر‌تکرار»
+          </p>
+        </div>
+        <!-- ghesmate soalat -->
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          {% for comment in comments %}
+            <div class="accordion-item">
+              <h2 style="direction: rtl;" class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-{{ comment.id }}" aria-expanded="false" aria-controls="flush-collapseOne">
+                  {{ comment.name }}
+                </button>
+              </h2>
+              <div id="flush-{{ comment.id }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div style="direction: rtl !important; text-align: right;" class="accordion-body"> {{ comment.description }} </div>
+                <span style="margin-left: 85%;"><code> {{ comment.created }} </code></span>
+              </div>
+            </div><br><br>
+          {% empty %}
+          <div style="font-family: 'Vazir' !important;direction: rtl;" class="alert alert-warning alert-dismissible fade show" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffca2c}</style><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>                                         هیچ موردی برای نمایش   <strong class="alert-link" >وجود ندارد.</strong> 
+            <button style="margin-right: 95%;" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>           
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include "home/footer.html" %}
+  <!-- load kardan bootstrap-script -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.bundle.min.js' %}">
+  <link rel="stylesheet" href="{% static 'css/popper.min.js' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.js' %}">
+</body>
+
+</html>

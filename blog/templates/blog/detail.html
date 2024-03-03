@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title style="font-family: 'Vazir';">وبلاگ خانه‌ هوشمند</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- fontawesome baraye yek seri icon- -->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- font haye google-->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+        <!-- include kardan file haye css (ke bootsrap ham darad) -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <link href="{% static 'blog/css/styles.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/font.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- ghesmate navbar-->
+        <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <div style="margin-right: 90%;" class="collapse navbar-collapse" id="navbarResponsive">
+                </div>
+                <a style="direction: rtl; font-family: 'Vazir'; margin-right: 20%;" class="navbar-brand" href="{% url 'home:index' %}">خانه‌ی هوشمند</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                </button> 
+            </div>
+        </nav>
+        <!-- ghesmate headere safhe-->
+        <header class="masthead" style="background-image: url('{{ article.thumbnail.url }}')">
+            <div style="margin-left: 20%;" class="container position-relative px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div style="margin-left: 13%; color: black !important;" class="post-heading">
+                            <h1 style="font-family: 'Vazir';">{{ article.title }}</h1>
+                            <span style="direction: rtl; font-family: 'Vazir'; margin-right: 25%;" class="meta">
+                                ارسال شده توسط:
+                                <a style="color: black !important;">{{ article.author }}</a>
+                                در {{ article.publish }}
+                                <div><span style="margin-right: 40%; margin-top: 1%;" class="badge bg-danger" style="font-size: 14px;"> دسته‌بندی: {{ article.category }} </span></div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- mohtaviat maghalat -->
+        <article style="direction: rtl; font-family: 'Vazir';" class="mb-4">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        {{ article.description }}
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- ghesmate Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; Your Website 2023</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- include kardan file haye javascript bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+        <!-- include kardan file javascript-->
+        <script src="{% static 'blog/js/scripts.js' %}"></script>
+</html>

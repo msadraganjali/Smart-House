@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Sadra Ganjali</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    {% load static %}
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- font haye safhe -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- file haye css -->
+    <link href="{% static 'shop/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font.css' %}" rel="stylesheet">
+    <link href="{% static 'shop/css/style.css' %}" rel="stylesheet">
+</head>
+<style>
+    #custom:focus {
+        color: #212529;
+        background-color: #ffc107 !important;
+        border-color: #ffc107 !important;
+        box-shadow: #ffc107 !important;
+    }
+</style>
+<body style="font-family: 'Vazir' !important; ">
+    <!-- navbare safhe -->
+    <div class="container-fluid">
+        <div style="background-color: white !important; margin-left: 73.5%;" class="row bg-secondary py-2 px-xl-5">
+            <div class="col-lg-6 d-none d-lg-block">
+                <div style="color: #0B5ED7 !important;" class="d-inline-flex align-items-center">
+                    <a style="color: #0B5ED7 !important;" class="text-dark" href="{% url 'blog:list' %}">بلاگ</a>
+                    <span style="color: #0B5ED7 !important;" class="text-muted px-2">/</span>
+                    <a style="color: #0B5ED7 !important;" class="text-dark" href="{% url 'home:guide' %}">راهنما</a>
+                    <span style="color: #0B5ED7 !important;" class="text-muted px-2">/</span>
+                    <a style="color: #0B5ED7 !important;" class="text-dark" href="{% url 'home:index' %}">خانه</a>
+                    <span style="color: #0B5ED7 !important;" class="text-muted px-2">/</span>
+                    <a style="color: #0B5ED7 !important;" class="text-dark" href="{% url 'home:about_me' %}">درباره‌من</a>
+                    <span style="color: #0B5ED7 !important;" class="text-muted px-2">/</span>
+                    <a style="color: #6c757d !important;" class="text-dark">فروشگاه</a>
+                    <span style="color: #0B5ED7 !important;" class="text-muted px-2">/</span>
+                    <a style="color: #0B5ED7 !important;" class="text-dark" href="{% url 'home:faq' %}">سوالات‌پر‌تکرار</a>
+                </div>
+            </div>
+        </div>
+    <div class="container-fluid">
+
+        <div style="direction: rtl;"  class="row align-items-center py-3 px-xl-5">
+            <div class="col-lg-3 d-none d-lg-block">
+                <a href="" class="text-decoration-none">
+                    <h1 class="m-0 display-5 font-weight-semi-bold">فروشگاه<span style="color: #31D2F2 !important;" class="text-primary font-weight-bold border px-3 mr-1">خانه‌هوشمند</span></h1>
+                </a>
+            </div>
+            <div class="col-lg-6 col-6 text-left">
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="جست‌‌و‌‌جو در محصولات">
+                        <div class="input-group-append">
+                            <span class="input-group-text bg-transparent text-primary">
+                                <i style="color: #31D2F2 !important;" class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3 col-6 text-right">
+                <a href="" class="btn border">
+                    <i style="color: #31D2F2 !important;" class="fas fa-heart text-primary"></i>
+                    <span class="badge">0</span>
+                </a>
+                <a href="" class="btn border">
+                    <i style="color: #31D2F2 !important;" class="fas fa-shopping-cart text-primary"></i>
+                    <span class="badge">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div style="direction: rtl;" class="container-fluid mb-5">
+        <div class="row border-top px-xl-5">
+            
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0">
+                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                        <span style="color: #31D2F2 !important;" class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                        <div class="navbar-nav mr-auto py-0">
+                            <a href="{% url 'home:index' %}" class="nav-item nav-link">خانه</a>
+                            <a href="{% url 'home:guide' %}" class="nav-item nav-link">راهنما</a>
+                            <a href="{% url 'home:about_me' %}" class="nav-item nav-link">درباره‌ی من</a>
+                            <a href="{% url 'blog:list' %}" class="nav-item nav-link">وبلاگ</a>
+                            <a href="{% url 'home:faq' %}" class="nav-item nav-link">سوالات پر‌تکرار</a>
+                            <a class="nav-item nav-link active">فروشگاه</a>
+                        </div>
+                        {% if user.is_authenticated %}
+                            <div class="navbar-nav ml-auto py-0">
+                                <a href="{% url 'profile' %}" class="nav-item nav-link">پروفایل</a>
+                                <a href="{% url 'logout' %}" class="nav-item nav-link">خروج</a>
+                            </div>
+                        {% else %}
+                            <div class="navbar-nav ml-auto py-0">
+                                <a href="{% url 'login' %}" class="nav-item nav-link">ورود</a>
+                                <a href="{% url 'register' %}" class="nav-item nav-link">ثبت‌نام</a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </nav>
+                <div style="margin-right: 25%;" id="header-carousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" style="height: 410px;">
+                            <img class="img-fluid" src="{% static 'shop/img/carousel-3.jpeg' %}" alt="Image">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                                <div class="p-3" style="max-width: 700px;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10 درصد تخفیف برای اولین خریدتان</h4>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">لوازم‌هوشمندتان‌را‌اینجا‌بخرید!</h3>
+                                    <a style="background-color: #FFCA2C; border-radius: 7%; border-color: #FFCA2C;" href="" id="custom" class="btn btn-light py-2 px-3">الان خرید کنید</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="carousel-item" style="height: 410px; ">
+                            <img class="img-fluid" src="{% static 'shop/img/2.jpg' %}" alt="Image">
+                            <div class="carousel-caption d-flex flex-column align-items-center justify-content-left">
+                                <div class="p-3" style="max-width: 700px; margin-left: 30%; margin-top: 10%;">
+                                    <h4 class="text-light text-uppercase font-weight-medium mb-3">10 درصد تخفیف برای اولین خریدتان</h4>
+                                    <h3 class="display-4 text-white font-weight-semi-bold mb-4">قیمت مناسب</h3>
+                                    <a style="background-color: #FFCA2C; border-radius: 7%; border-color: #FFCA2C;" href="" id="custom" class="btn btn-light py-2 px-3">الان خرید کنید</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                            <span class="carousel-control-prev-icon mb-n2"></span>
+                        </div>
+                    </a>
+                    <a class="carousel-control-next" href="#header-carousel" data-slide="next">
+                        <div class="btn btn-dark" style="width: 45px; height: 45px;">
+                            <span class="carousel-control-next-icon mb-n2"></span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ghesmate vizhegi haye site -->
+    <div class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px; direction: rtl;">
+                    <h1 style="color: #31D2F2 !important;" class="fa fa-check text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0" style="margin-right: 5% !important;">محصول باکیفیت</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px; direction: rtl;">
+                    <h1 style="color: #31D2F2 !important;" class="fa fa-shipping-fast text-primary m-0 mr-2"></h1>
+                    <h5 class="font-weight-semi-bold m-0" style="margin-right: 5% !important;">ارسال رایگان</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px; direction: rtl;">
+                    <h1 style="color: #31D2F2 !important;" class="fas fa-exchange-alt text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0" style="margin-right: 5% !important;"> بازگشت 14 روزه</h5>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                <div class="d-flex align-items-center border mb-4" style="padding: 30px; direction: rtl;">
+                    <h1 style="color: #31D2F2 !important;" class="fa fa-phone-volume text-primary m-0 mr-3"></h1>
+                    <h5 class="font-weight-semi-bold m-0" style="margin-right: 5% !important;">24/7 پشتیبانی</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- dastebandi haye site -->
+    <div" class="container-fluid pt-5">
+        <div class="row px-xl-5 pb-3">
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="{% static 'shop/img/28695.jpg' %}" alt="">
+                    </a>
+                    <h5 style="text-align: center; font-size: 150%;" class="font-weight-semi-bold m-0">خرید از فروشگاه</h5>
+                </div>
+            </div>
+            <div style="margin-top: 8%;" class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="{% static 'shop/img/4412687.png' %}" alt="">
+                    </a>
+                    <h5 style="text-align: center; font-size: 150%;" class="font-weight-semi-bold m-0">دوره های آموزشی</h5>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 pb-1">
+                <div class="cat-item d-flex flex-column border mb-4" style="padding: 30px;">
+                    <a href="" class="cat-img position-relative overflow-hidden mb-3">
+                        <img class="img-fluid" src="{% static 'shop/img/iot-smart-home-remote-controlled-electronic-devices-isometric-icons-collection-with-refrigerator-tv-stove-coffeemaker-illustration_1284-28689.avif' %}" alt="">
+                    </a>
+                    <h5 style="text-align: center; font-size: 150%;" class="font-weight-semi-bold m-0">فروش‌ در فروشگاه</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid offer pt-5">
+        <div class="row px-xl-5">
+            <div class="col-md-6 pb-4">
+                <div style="background-color: #bcf5ff !important;" class="position-relative bg-secondary text-center text-md-right text-white mb-2 py-5 px-5">
+                    <img style="margin-bottom: 1.5%; margin-left: 4%;" src="{% static 'shop/img/lovepik-engineering-guidance-png-image_401516002_wh1200.png' %}" alt="">
+                    <div class="position-relative" style="z-index: 1;">
+                        <h5 style="color: #0B5ED7 !important;" class="text-uppercase text-primary mb-3">تخفیف برای تمام سفارشات <bdi>20</bdi></h5>
+                        <h1 class="mb-4 font-weight-semi-bold">مشاوره و کارشناسی خانه</h1>
+                        <a href="" style="border-radius: .3rem;" class="btn btn-outline-primary py-md-2 px-md-3">الان بخرید</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 pb-4">
+                <div style="background-color: #bcf5ff !important;" class="position-relative bg-secondary text-center text-md-left text-white mb-2 py-5 px-5">
+                    <img style="margin-bottom: 5%; margin-right: 4%;" src="{% static 'shop/img/images.jpeg' %}" alt="">
+                    <div class="position-relative" style="z-index: 1;">
+                        <h5 style="color: #0B5ED7 !important;" class="text-uppercase text-primary mb-3">تخفیف برای تمام سفارشات <bdi>20</bdi></h5>
+                        <h1 class="mb-4 font-weight-semi-bold">تعمیرات وسایل هوشمند</h1>
+                        <a href="" style="border-radius: .3rem;" class="btn btn-outline-primary py-md-2 px-md-3">الان بخرید</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- kala ha ba sort bande ye masrf energy -->
+    <div class="container-fluid pt-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">کم‌مصرف‌ترین محصولات</span></h2>
+        </div>
+        <div class="row px-xl-5 pb-3">
+            {% for object in objects %}
+            <a style="text-decoration: none;" href="{% url 'shop:detail' object.id %}">
+                <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                    <div class="card product-item border-0 mb-4">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                            <img class="img-fluid w-100" src="{{ object.thumbnail.url }}" alt="">
+                        </div>
+                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                            <h6 class="text-truncate mb-3">{{ object.title }}</h6>
+                            <div class="d-flex justify-content-center">
+                                <h6>${{ object.price }}</h6><h6 class="text-muted ml-2"><del>${{ object.offprice }}</del></h6>
+                            </div>
+                        </div>
+                        <div style="direction: rtl;" class="card-footer d-flex justify-content-between bg-light border">
+                            <div style="margin-left: 40%;">
+                                <a href="" class="btn btn-sm text-dark p-0">     <i style="color: #31D2F2 !important; white-space: nowrap; text-decoration: none;" class="fas fa-eye text-primary mr-1"></i>دیدن جزئیات</a>
+                            </div>
+                            <a href="" class="btn btn-sm text-dark p-0">     <i style="color: #31D2F2 !important; white-space: nowrap; text-decoration: none;" class="fas fa-shopping-cart text-primary mr-1"></i>اضافه‌به‌‌سبدخرید</a>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- ghesmate gereftan shmare mobile -->
+    <div class="container-fluid bg-secondary my-5">
+        <div  style="background-color: #bcf5ff;" class="row justify-content-md-center py-5 px-xl-5">
+            <div class="col-md-6 col-12 py-5">
+                <div class="text-center mb-2 pb-2">
+                    <h2 class="section-title px-5 mb-3"><span style="background-color: #bcf5ff !important;" class="bg-secondary px-2">ثبت‌ شماره</span></h2>
+                    <p>.برای مشاوره و کارشناسی شماره‌‌ موبایل خود را وارد کنید</p>
+                </div>
+                <form action="">
+                    <div class="input-group">
+                        <input type="text" class="form-control border-white p-4" placeholder=".شماره موبایل خود را وارد کنید">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary px-4">ثبت</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- kala ha ba sort bandi ye jadid tarin -->
+    <div class="container-fluid pt-5">
+        <div class="text-center mb-4">
+            <h2 class="section-title px-5"><span class="px-2">جدید‌ترین محصولات</span></h2>
+        </div>
+        <div class="row px-xl-5 pb-3">
+            {% for object in object_new %}
+            <a style="text-decoration: none;" href="{% url 'shop:detail' object.id %}">
+                <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                    <div class="card product-item border-0 mb-4">
+                        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                            <img class="img-fluid w-100" src="{{ object.thumbnail.url }}" alt="">
+                        </div>
+                        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                            <h6 class="text-truncate mb-3">{{ object.title }}</h6>
+                            <div class="d-flex justify-content-center">
+                                <h6>${{ object.price }}</h6><h6 class="text-muted ml-2"><del>${{ object.offprice }}</del></h6>
+                            </div>
+                        </div>
+                        <div style="direction: rtl;" class="card-footer d-flex justify-content-between bg-light border">
+                            <div style="margin-left: 40%;">
+                                <a href="" class="btn btn-sm text-dark p-0">     <i style="color: #31D2F2 !important; white-space: nowrap; text-decoration: none;" class="fas fa-eye text-primary mr-1"></i>دیدن جزئیات</a>
+                            </div>
+                            <a href="" class="btn btn-sm text-dark p-0">     <i style="color: #31D2F2 !important; white-space: nowrap; text-decoration: none;" class="fas fa-shopping-cart text-primary mr-1"></i>اضافه‌به‌‌سبدخرید</a>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- file haye javascript -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'shop/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'shop/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'shop/mail/jqBootstrapValidation.min.js' %}"></script>
+    <script src="{% static 'shop/mail/contact.js' %}"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+<!-- include kardan footer site -->
+{% include 'home/footer copy.html' %}

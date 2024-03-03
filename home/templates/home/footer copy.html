@@ -1,0 +1,69 @@
+<!-- ghemate footer site ke dar hame ye safahat import mishe -->
+
+{% block content %}
+<style>
+/* #myFooter {
+    background-color: #3c3d41;
+    color: white;
+    padding-top: 30px;
+} */
+
+#myFooter .footer-copyright {
+    background-color: #333333;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center;
+}
+
+#myFooter .footer-copyright p {
+    margin: 10px;
+    color: #ccc;
+}
+
+#myFooter a {
+    color: #d2d1d1;
+    text-decoration: none;
+}
+
+#myFooter a:hover,
+#myFooter a:focus {
+    text-decoration: none;
+    color: white;
+}
+
+
+#myFooter .footer-copyright {
+    margin: 0 !important;
+}
+
+#myFooter .btn {
+    color: white;
+    background-color: #00d9f4;
+    border-radius: 20px;
+    border: none;
+    width: 150px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    line-height: 25px;
+}
+
+@media screen and (max-width: 767px) {
+    #myFooter {
+        text-align: center;
+    }
+}
+
+#myFooter{
+   flex: 0 0 auto;
+   -webkit-flex: 0 0 auto;
+}
+
+</style>
+<footer id="myFooter">
+  <div class="footer-copyright">
+    <p style="font-family: 'Vazir' !important; direction: rtl;">© 2023 کلیه حقوق مادی و معنوی این سورس متعلق به <a href="{% url 'home:index' %}" target="_blank">smart_home</a> می
+      باشد.</p>
+  </div>
+</footer>
+{% endblock content %}

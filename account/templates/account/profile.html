@@ -1,0 +1,404 @@
+{% extends "account/base.html" %}
+{% block meta %}
+<!-- safhe profile karbar -->
+<meta http-equiv="refresh" content="5">
+{% endblock meta %}
+
+{% load static %}
+{% block content %}
+<section style="background-color: #EEEEEE;">
+  {% if alert %}
+<div style="font-family: 'Vazir' !important;direction: rtl;" class="alert alert-success alert-dismissible fade show" role="alert">
+  <svg class="check_svg2" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>.check_svg2{fill:#157347}</style><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>    تغییرات شما با <strong class="alert-link" >موفقیت</strong> ثبت شد.
+  <button style="margin-right: 95%;" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endif %}
+  <div class="container py-5">
+    <div class="row">
+      <div class="col">
+        <!-- ghesmate navbar site -->
+        <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4" style="font-family: 'Vazir' !important;">
+          <ol class="breadcrumb mb-0" style="margin-left: 65%;">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a href="{% url 'logout' %}" class="btn btn-danger mr-2">خروج</a>
+              <a href="{% url 'home:index' %}" class="btn btn-info">خانه</a>
+              <a href="{% url 'home:send' %}" class="btn btn-success">ثبت‌خانه</a>
+              <a href="{% url 'home:send_device' %}" class="btn btn-primary">ثبت‌وسیله</a>
+              <a href="{% url 'home:list_device' %}" class="btn btn-warning">کنترل خانه هوشمند</a>
+            </div>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <!-- ghesmate aks profile va ziresh username karbar -->
+{% if is_fire %}
+  {% if alert %}
+  <div style="font-family: 'Vazir' !important;direction: rtl;" class="alert alert-success alert-dismissible fade show" role="alert">
+    <svg xmlns="http://www.w3.org/2000/svg" height="1.25em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#157347}</style><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg>    تغییرات شما با <strong class="alert-link" >موفقیت</strong> ثبت شد.
+    <button style="margin-right: 95%;" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  {% endif %}
+    <div style="font-family: 'Vazir' !important;direction: rtl;" class="alert alert-danger alert-dismissible fade show" role="alert">
+      <svg class="check_svg" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>.check_svg{fill:#c01c28}</style><path d="M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z"/></svg>
+      سیستم شما دچار
+      <a class="alert-link" href="tel:125">
+        <strong style="alert-link">سانحه</strong></a>
+      شده است. 
+      سانحه به سازمان آتش‌نشانی اعلام شد.
+                       <a href="tel:125" class="alert-link justify-content-between align-items-center">تماس باآتش‌نشانی</a>
+                       |
+                       <a href="tel:115" class="alert-link justify-content-between align-items-center">تماس با اورژانس</a>
+                       |
+                       <a href="tel:110" class="alert-link justify-content-between align-items-center">تماس با پلیس</a>
+    </div>
+      <img style="margin-right: 100%; width: 100%; height: 50%;" src="{% static 'img/fire.gif' %}" alt="">
+{% else %}
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="card mb-4">
+          <div class="card-body text-center">
+            <img src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg"
+              alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
+            <h5 style="font-family: 'Ubuntu Mono' !important;" class="my-3">{{ user.username }}</h5>
+          </div>
+        </div>
+        <!-- etlaat marbot be khane karbar -->
+        <div style="font-family: 'Vazir' !important; direction: ltr;" class="card mb-4 mb-lg-0">
+          <div class="card-body p-0">
+            <ul class="list-group list-group-flush rounded-3">
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <p class="mb-0">
+                <p class="text-muted mb-0">{% if home.uuid  %}{{ home.uuid }}{% else %}<p style="color:#d26262 !important; margin:0 !important; padding:0 !important;">.دریافت نشده</p>{% endif %}</p> :شماره شناسه خانه</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <p class="mb-0">
+                <p class="text-muted mb-0">{% if home.pccode  %}{{ home.pccode }}{% else %}<p style="color:#d26262 !important; margin:0 !important; padding:0 !important;">.دریافت نشده</p>{% endif %}</p> :کدپستی خانه</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <p class="mb-0">
+                <p class="text-muted mb-0">{% if home.password  %}{{ home.password }}{% else %}<p style="color:#d26262 !important; margin:0 !important; padding:0 !important;">.دریافت نشده</p>{% endif %}</p> :کلمه‌عبور خانه</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <p class="mb-0">
+                <p class="text-muted mb-0">{% if home.locate  %}{{ home.locate }}{% else %}<p style="color:#d26262 !important; margin:0 !important; padding:0 !important;">.دریافت نشده</p>{% endif %}</p> :ناحیه آب‌و‌هوایی خانه</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <p class="mb-0">
+                <p class="text-muted mb-0">{% if home.total_score  %}{{ home.total_score }}{% else %}<p style="color:#d26262 !important; margin:0 !important; padding:0 !important;">.سابقه‌ای دریافت نشده</p>{% endif %}</p> :سابقه‌ سوء مصرف خانه</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <p class="mb-0">
+                <p class="text-muted mb-0">{% if home.score  %}{{ home.score }}{% else %}<p style="color:#d26262 !important; margin:0 !important; padding:0 !important;">.امتیازی ثبت نشده</p>{% endif %}</p> :امتیاز خانه</p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <p class="mb-0">
+                <p class="text-muted mb-0">{% if home.electricity_number  %}{{ home.electricity_number }}{% else %}<p style="color:#d26262 !important; margin:0 !important; padding:0 !important;">.دریافت نشده</p>{% endif %}</p>:شماره‌کنتوربرق </p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <p class="mb-0">
+                <p class="text-muted mb-0">{% if home.whater_number  %}{{ home.whater_number }}{% else %}<p style="color:#d26262 !important; margin:0 !important; padding:0 !important;">.دریافت نشده</p>{% endif %}</p>:شماره‌کنتورآب </p>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-center p-3">
+                <p class="mb-0">
+                <p class="text-muted mb-0">{% if home.gaz_number  %}{{ home.gaz_number }}{% else %}<p style="color:#d26262 !important; margin:0 !important; padding:0 !important;">.دریافت نشده</p>{% endif %}</p>:شماره‌کنتورگاز</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- etlaat marbot be karbar -->
+      <div style="direction: rtl; font-family: 'Vazir' !important;" class="col-lg-7">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">نام کاربری:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.username }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">شماره شناسه کاربر:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.uuid }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">شماره‌شناسه‌خانه‌کاربر:</p>
+              </div>
+              <div class="col-sm-9">
+                {% if home.uuid %}
+                  <p class="text-muted mb-0">{{ home.uuid }}</p>
+                {% else %}
+                  <p class="text-muted mb-0" style="color:#d26262 !important; margin:0 !important; padding:0 !important;">دریافت نشده.</p>
+                {% endif %}
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">کدملی:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ user.nid }}</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">دمای شهر:</p>
+              </div>
+              {% if cityTemp %}
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0" style="color: #5a5af2 !important;">{{cityTemp}}ºC</p>
+                </div>
+              {% else %}
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0" style="color: #d26262 !important;" >دریافت نشده.</p>
+                </div>
+              {% endif %}
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">وضعیت آب‌و‌هوایی شهر:</p>
+              </div>
+              {% if cityStatus %}
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0" style="color: #5a5af2 !important;">{{cityStatus}}</p>
+                </div>
+              {% else %}
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0" style="color: #d26262 !important;" >دریافت نشده.</p>
+                </div>
+              {% endif %}
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">دمای خانه:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" style="color: #6cb36c !important;" >{{ temp }}ºC</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">رطوبت خانه:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" style="color: #6cb36c !important;" >{{ hum }}%</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">رطوبت گلدان:</p>
+              </div>
+              {% if isEarthHum %}
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0" style="color: #5a5af2 !important;">مرطوب</p>
+                </div>
+              {% else %}
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0" style="color: #d26262 !important;" >خشک</p>
+                </div>
+              {% endif %}
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">میزان مصرف برق:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" style="color: #d26262 !important;">{{ int_e }} کیلووات</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">میزان مصرف آب:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" style="color: #5a5af2 !important;">{{ int_w }} مترمکعب</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">میزان مصرف گاز:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" style="color: #f8be53 !important;">{{ int_g }} مترمکعب</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">غلظت کربن مونوکسید:</p>
+              </div>
+              <div class="col-sm-9">
+                <div class="row">
+                  <p class="text-muted mb-0 col" style="color: #d26262 !important">{{gas}} پی‌پی‌ام</p>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">تشخیص‌حرکت در محیط:</p>
+              </div>
+              {% if motion %}
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0" style="color: #5a5af2 !important;">حرکت وجود دارد.</p>
+                </div>
+              {% else %}
+                <div class="col-sm-9">
+                  <p class="text-muted mb-0" style="color: #d26262 !important;" >حرکتی وجود ندارد.</p>
+                </div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+        <!-- nemodare(geraf)(chart) site -->
+      </div>
+    </div>
+    <div style="margin-top: 0%;">
+      <canvas id="eChart"></canvas>
+    </div>
+    <br>
+    <div style="margin:0%; width:100%;" class="row">
+      <canvas class="m-8" id="usageChart"></canvas>
+    </div>
+    <br>
+    <div style="margin-top: 0%;">
+      <canvas id="humChart"></canvas>
+    </div>
+    <br>
+    <div style="margin-top: 0%;">
+      <canvas id="tempChart"></canvas>
+    </div>
+    <!-- load kardan chart.js baraye nemodare(geraf)(chart) -->
+    <script src="{% static 'graf/chart.js' %}"></script>
+    <script>
+      // gereftan tag canvas beraye dadan usageChart
+
+      const eChart = document.getElementById('eChart');
+
+      new Chart(eChart, {
+        type: 'line',
+        data: {
+        // dadan etlaat bargh be nemodare(geraf)(chart)
+        labels: [{% for q in usage %} "{{ q.created }}" , {% endfor %}],
+        datasets: [{
+           // dadan etlaat be nemodare(geraf)(chart) be sorate static
+          label: ' برق',
+          data: [{% for e in e_total_usage %} "{{ e }}", {% endfor %}],
+          borderWidth: 4,
+          borderColor: "red"
+        },
+          ]
+          },
+        options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          },
+        }
+      }
+        });
+
+      const usageChart = document.getElementById('usageChart');
+
+      new Chart(usageChart, {
+        type: 'line',
+        data: {
+        // dadan etlaat bargh be nemodare(geraf)(chart)
+        labels: [{% for q in usage %} "{{ q.created }}" , {% endfor %}],
+        datasets: [
+        {
+           // dadan etlaat be nemodare(geraf)(chart) be sorate static
+          label: ' آب',
+          data: [{% for w in w_total_usage %} "{{ w }}", {% endfor %}],
+          borderWidth: 4,
+          borderColor: "blue"
+        },
+        {
+          // dadan etlaat "dama" be nemodare(geraf)(chart) be sorate static
+          label: ' گاز',
+          data: [{% for g in g_total_usage %} "{{ g }}", {% endfor %}],
+          borderWidth: 4,
+          borderColor: "orange"
+        },
+          ]
+          },
+        options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          },
+        }
+      }
+        });
+
+      const humChart = document.getElementById('humChart');
+
+      new Chart(humChart, {
+        type: 'line',
+        data: {
+        // dadan etlaat bargh be nemodare(geraf)(chart)
+        labels: [{% for q in usage %} "{{ q.created }}" , {% endfor %}],
+        datasets: [{
+           // dadan etlaat be nemodare(geraf)(chart) be sorate static
+          label: ' رطوبت',
+          data: [{% for h in total_hum %} "{{ h }}", {% endfor %}],
+          borderWidth: 4,
+          borderColor: "blue"
+        },
+          ]
+          },
+        options: {
+        scales: {
+          y: {
+            beginAtZero: false
+          },
+        }
+      }
+        });
+      
+        const tempChart = document.getElementById('tempChart');
+
+      new Chart(tempChart, {
+        type: 'line',
+        data: {
+        // dadan etlaat bargh be nemodare(geraf)(chart)
+        labels: [{% for q in usage %} "{{ q.created }}" , {% endfor %}],
+        datasets: [{
+          // dadan etlaat "dama" be nemodare(geraf)(chart) be sorate static
+          label: ' دما',
+          data: [{% for temp in total_temp %} "{{ temp }}", {% endfor %}],
+          borderWidth: 4,
+          borderColor: "red"
+        },
+          ]
+          },
+        options: {
+        scales: {
+          y: {
+            beginAtZero: false
+          },
+        }
+      }
+        });
+    </script>
+  </div>
+</section>
+{% endif %}
+{% endblock content %}

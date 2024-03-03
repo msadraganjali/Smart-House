@@ -1,0 +1,11 @@
+{% extends "account/base.html" %}
+<!-- neshan dadan pegham khata be karbar baraye sakhtan kane -->
+{% block content %}
+<div class="container">
+    <div class="alert alert-danger" role="alert"
+        style="font-family: 'Vazir' !important; text-align: center; margin-top: 10%;">
+        شما قبلا خانه‌تان را ثبت کرده‌اید.برای مشاهدی اطلاعات خانه به <a class="alert-link"
+            href="{% url 'profile' %}">.پروفایل وارد شوید.</a>
+    </div>
+</div>
+{% endblock content %}

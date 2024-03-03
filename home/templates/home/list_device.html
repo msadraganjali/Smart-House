@@ -1,0 +1,432 @@
+<html lang="en">
+<!-- base safahat -->
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sadra Ganjali</title>
+    <!-- load kardan bootstrap-css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    {% block meta %}
+    
+    {% endblock meta %}
+</head>
+{% block fire %}
+<body style="background-color: #EEEEEE;">
+{% endblock fire %}
+    <div class="content">
+      <section>
+        <div class="container py-5">
+          <div class="row">
+            <div class="col">
+              <!-- ghesmate navbar site -->
+              <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4" style="font-family: 'Vazir' !important;">
+                <ol class="breadcrumb mb-0" style="margin-left: 65%;">
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="{% url 'logout' %}" class="btn btn-danger mr-2">خروج</a>
+                    <a href="{% url 'home:index' %}" class="btn btn-info">خانه</a>
+                    <a href="{% url 'home:send' %}" class="btn btn-success">ثبت‌خانه</a>
+                    <a href="{% url 'home:send_device' %}" class="btn btn-primary">ثبت‌وسیله</a>
+                    <a href="{% url 'home:list_device' %}" class="btn btn-warning">کنترل‌خانه‌هوشمند</a>
+                  </div>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <div style="margin-top: 70px; direction: rtl; text-align: center; font-size: 2rem; color: #334155;">
+            <p>
+              «کنترل خانه هوشمند»
+            </p>
+          </div>
+        <div style="margin-top: 5%; margin-bottom: 20%; direction: rtl;" class="container">
+          <div class="row">
+            <div class="col card" style="background-color: white; padding-right: 5%; padding-left: 5%; padding-top: 1%; padding-bottom: 1%;">
+              دما: C23  
+            </div>
+            <div class="col card" style="background-color: white; padding-right: 5%; padding-left: 5%; padding-top: 1%; padding-bottom: 1%;">
+              دما: C23  
+            </div>
+            <div class="col card" style="background-color: white; padding-right: 5%; padding-left: 5%; padding-top: 1%; padding-bottom: 1%;">
+              دما: C23  
+            </div>
+            <div class="col card" style="background-color: white; padding-right: 5%; padding-left: 5%; padding-top: 1%; padding-bottom: 1%;">
+              دما: C23  
+            </div>
+          </div>
+          <div class="row">
+            <div class="col card" style="background-color: white; padding-right: 5%; padding-left: 5%; padding-top: 1%; padding-bottom: 1%;">
+              دما: C23  
+            </div>
+            <div class="col card" style="background-color: white; padding-right: 5%; padding-left: 5%; padding-top: 1%; padding-bottom: 1%;">
+              دما: C23  
+            </div>
+            <div class="col card" style="background-color: white; padding-right: 5%; padding-left: 5%; padding-top: 1%; padding-bottom: 1%;">
+              دما: C23  
+            </div>
+            <div class="col card" style="background-color: white; padding-right: 5%; padding-left: 5%; padding-top: 1%; padding-bottom: 1%;">
+              دما: C23  
+            </div>
+          </div>
+          <br><br><br>
+          <div class="row justify-content-around">
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://thumbs.dreamstime.com/z/lamp-vector-icon-148214603.jpg" style="border-radius: 8px !important;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">روشنایی سالن</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input name="status" class="form-check-input" type="checkbox" role="switch" id="status" {% if device1.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device" value="{{ device1.device }}">
+                        <label class="form-check-label" for="status">روشن/خاموش:</label>
+                      </div>
+                      <label for="data" class="form-label">شدت روشنایی:</label>
+                      <input name="data" type="range" value="{{device1.data}}" class="form-range" id="data">
+                    </div>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://thumbs.dreamstime.com/z/lamp-vector-icon-148214603.jpg" style="border-radius: 8px !important;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">روشنایی سالن</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input name="status" class="form-check-input" type="checkbox" role="switch" id="status" {% if device1.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device" value="{{ device1.device }}">
+                        <label class="form-check-label" for="status">روشن/خاموش:</label>
+                      </div>
+                      <label for="data" class="form-label">شدت روشنایی:</label>
+                      <input name="data" type="range" value="{{device1.data}}" class="form-range" id="data">
+                    </div>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row justify-content-around">
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img style="height: 70%; position: absolute; top: 12%; left: 68%;" src="https://thumbs.dreamstime.com/z/lamp-vector-icon-148214603.jpg" style="border-radius: 8px !important;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">کولر اتاق‌ها</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                      </div>
+                      <label for="customRange1" class="form-label">شدت روشنایی:</label>
+                      <input type="range" class="form-range" id="customRange1">
+                    </div>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img style="height: 70%; position: absolute; top: 12%; left: 68%;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7PCJZM1rdhFR7_8z8YzpucT7gemDihb5BX4vTKFxzuQ&s" style="border-radius: 8px !important;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">کولرسالن</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                      </div>
+                      <label for="customRange1" class="form-label">شدت روشنایی:</label>
+                      <input type="range" class="form-range" id="customRange1">
+                    </div>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row justify-content-around">
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img style="height: 86%; position: absolute; top: 7%; left: 65%;" src="data:image/png;base64,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" style="border-radius: 8px !important;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">لامپ2</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                      </div>
+                      <label for="customRange1" class="form-label">شدت روشنایی:</label>
+                      <input type="range" class="form-range" id="customRange1">
+                    </div>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img style="height: 86%; position: absolute; top: 3%; left: 66%;" src="https://static.vecteezy.com/system/resources/thumbnails/004/202/487/small_2x/window-frame-decoration-isolated-icon-on-white-background-free-vector.jpg" style="border-radius: 8px !important;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">لامپ3</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                      </div>
+                      <label for="customRange1" class="form-label">شدت روشنایی:</label>
+                      <input type="range" class="form-range" id="customRange1">
+                    </div>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row justify-content-around">
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://cdn3.vectorstock.com/i/1000x1000/04/07/red-car-vector-2170407.jpg" style="border-radius: 8px !important;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">لامپ2</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                      </div>
+                      <label for="customRange1" class="form-label">شدت روشنایی:</label>
+                      <input type="range" class="form-range" id="customRange1">
+                    </div>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://s31.picofile.com/file/8473019076/gas_mask_2_.png" style="border-radius: 8px !important; position: relative; width: 73%; top:17%; left:-14%" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">لامپ3</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                      </div>
+                      <label for="customRange1" class="form-label">شدت روشنایی:</label>
+                      <input type="range" class="form-range" id="customRange1">
+                    </div>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row justify-content-around">
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://s30.picofile.com/file/8472981934/vecteezy_thief_bandit_character_.jpg" style="border-radius: 8px !important;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">لامپ2</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                      </div>
+                      <label for="customRange1" class="form-label">شدت روشنایی:</label>
+                      <input type="range" class="form-range" id="customRange1">
+                    </div>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://cbx-prod.b-cdn.net/COLOURBOX17669415.jpg?width=800&height=800&quality=90" style="border-radius: 8px !important; position: relative; top: 6%;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">لامپ3</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                      </div>
+                      <label for="customRange1" class="form-label">شدت روشنایی:</label>
+                      <input type="range" class="form-range" id="customRange1">
+                    </div>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row justify-content-around">
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://img.freepik.com/free-vector/flat-houseplant-collection_23-2148899678.jpg" style="border-radius: 8px !important; position: relative; top: 6%;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">لامپ2</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                      </div>
+                      <label for="customRange1" class="form-label">شدت روشنایی:</label>
+                      <input type="range" class="form-range" id="customRange1">
+                    </div>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://img.freepik.com/premium-vector/freshwater-fish-aquarium-concept-indoor-home-aquaria-vector-design-pet-vet-animal-shelter-four_135661-1445.jpg?size=338&ext=jpg&ga=GA1.1.1826414947.1699401600&semt=ais" style="border-radius: 8px !important; position: relative; top: 6%;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">لامپ3</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                      </div>
+                      <label for="customRange1" class="form-label">شدت روشنایی:</label>
+                      <input type="range" class="form-range" id="customRange1">
+                    </div>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row justify-content-around">
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="data:image/jpeg;base64,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" style="border-radius: 8px !important;position: relative; height: 73%; top: 11%; left: -9;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">لامپ2</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                      </div>
+                      <label for="customRange1" class="form-label">شدت روشنایی:</label>
+                      <input type="range" class="form-range" id="customRange1">
+                    </div>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTo-0CPAFnJRWfZ9qC-MaTIWt3vAs7rBztBw&usqp=CAU" style="border-radius: 8px !important;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">لامپ3</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
+                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                      </div>
+                      <label for="customRange1" class="form-label">شدت روشنایی:</label>
+                      <input type="range" class="form-range" id="customRange1">
+                    </div>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% comment %} {% else %}
+            <div style="font-family: 'Vazir' !important;direction: rtl;" class="alert alert-warning alert-dismissible fade show" role="alert">
+              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffca2c}</style><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>                                         هیچ موردی برای نمایش   <strong class="alert-link" >وجود ندارد.</strong> 
+              <button style="margin-right: 95%;" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div> 
+          {% endif %} {% endcomment %}
+        </div>
+      </section>
+    </div>
+    <!-- include kardan footer site -->
+    {% include "home/footer.html" %}
+    <!-- load kardan bootstrap-script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" style="background-color: #eee;">
+<!-- safhe rahnamayeei -->
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sadra Ganjali</title>
+  <!-- load kardan font va bootstrap -->
+  <link rel="stylesheet" href="{% static 'css/font.css' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body style="background-color: #eee; font-family: 'Vazir' !important;">
+  <!-- navbar site -->
+  <div class="container py-5" style="background-color: #eee;">
+    <div class="row">
+      <div class="col">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav" style="padding-top: 4px; font-size: 18px;">
+                <ol class="breadcrumb bg-light">
+                  <li class="breadcrumb-item"><a href="{% url 'home:about_me' %}">درباره‌ی من</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">راهنما</li>
+                  <li class="breadcrumb-item"><a href="{% url 'home:index' %}">خانه</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'blog:list' %}">وبلاگ</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'shop:list' %}">فروشگاه</a></li>
+                  <li class="breadcrumb-item"><a href="{% url 'home:faq' %}">سوالات پر‌تکرار</a></li>
+                </ol>
+              </ul>
+            </div>
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <!-- age karbar login karde bashe -->
+              {% if user.is_authenticated %}
+              <a style="font-size: 18px;" href="http://localhost:8000/admin/logout/"
+                class="btn btn-danger mr-2">خروج</a>
+              <a style="font-size: 18px;" href="{% url 'profile' %}" class="btn btn-info">پروفایل</a>
+            </div>
+            <!-- dar gheyre in sorat -->
+            {% else %}
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a href="{% url 'login' %}" class="btn btn-warning" style="font-size: 18px;">ورود</a>
+              <a href="{% url 'register' %}" class="btn btn-success" style="font-size: 18px;">ثبت‌نام</a>
+            </div>
+            {% endif %}
+          </div>
+        </nav>
+        <!-- title safhe -->
+        <div style="margin-top: 70px; direction: rtl; text-align: center; font-size: 2rem; color: #334155;">
+          <p>
+            «راهنما استفاده از سایت»
+          </p>
+        </div>
+        <!-- ghesmate video -->
+        <div
+          style="border-color: #334155; border-width: 5px; border-style: groove;  margin-bottom: 20px; width: 106%; height: 60%;">
+          <div class="ratio ratio-16x9 ">
+            <iframe src="{% static 'video/guide.mp4' %}" title="YouTube video" allowfullscreen controls></iframe>
+          </div>
+        </div>
+        <!-- rahnamaye matni site -->
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne" style="direction: rtl;">
+                شروع
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body" style="text-align: right; direction: rtl;">
+                پس از ورود به سایت در صورت داشتن حساب کاربری بر روی گزینه ورود در <code>navbar</code> کلیک نمایید ,
+                درغیر این صورت برای ساختن حساب کاربری روی گزینه <code style="font-family: 'Vazir' !important;">مان تبث</code> کلیک نمایید
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="direction: rtl;">
+                ثبت‌نام
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body" style="text-align: right; direction: rtl;">
+                در این قسمت نام کاربری دلخواه,کدملی و کلمه عبور را وارد نموده و سپس بر روی گزینه <code style="font-family: 'Vazir' !important;">مان تبث</code> کلیک نمایید.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"
+                style="direction: rtl;">
+                ورود
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body" style="text-align: right; direction: rtl;">
+                در فرم <code style="font-family: 'Vazir' !important;">دورو</code> چنان‌چه نام‌کاربری و کلمه عبور خود را صحیح وارد نمایید موفق به <code style="font-family: 'Vazir' !important;">دورو</code> به حساب‌کاربری‌تان
+                می‌شوید و از آنجا به پروفایل‌تان هدایت می‌شوید در غیراین‌صورت در همان صفحه <code style="font-family: 'Vazir' !important;">دورو</code> می‌مانید.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"
+                style="direction: rtl;">
+                پروفایل
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body" style="text-align: right; direction: rtl;">
+                پس‌از ورود به صفحه <code style="font-family: 'Vazir' !important;">لیافورپ</code> میتوانید اطلاعات مربوط به حساب‌کاربری‌تان را مشاهده نمایید و درصورتی که برروی
+                گزینه خروج در <code>navbar</code> کلیک نمایید از حساب خود خارج می‌شوید.
+              </div>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive"
+                style="direction: rtl;">
+                ثبت‌ خانه
+              </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+              data-bs-parent="#accordionExample">
+              <div class="accordion-body" style="text-align: right; direction: rtl;">
+                پس از ورود به صفحه پروفایل در سمت راست <code>navbar</code> گزینه <code style="font-family: 'Vazir' !important;">هناخ تبث</code> را انتخاب نمایید تا به صورت
+                خودکار وارد صفحه <code style="font-family: 'Vazir' !important;">هناخ تبث</code> گردید سپس اطلاعات مربوط به خانه را وارد نموده و برروی گزینه ارسال کلیک نمایید
+                , در صورتی که شما قبلا اطلاعات خانه‌تان را ثبت کرده پیغام خطا دریافت می‌کنید در غیراین‌صورت به صفحه
+                پروفایل‌تان هدایت می‌شوید و در قسمت پایین پروفایل , سمت چپ می‌توانید اطلاعات مربوط به خانه‌تان را مشاهده
+                کنید.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include "home/footer.html" %}
+  <!-- load kardan bootstrap-script -->
+  <link rel="stylesheet" href="{% static 'css/bootstrap.bundle.min.js' %}">
+  <link rel="stylesheet" href="{% static 'css/popper.min.js' %}">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.js' %}">
+</body>
+
+</html>
