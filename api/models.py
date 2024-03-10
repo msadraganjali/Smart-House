@@ -9,3 +9,8 @@ class AccuWheather(models.Model):
 
     def __str__(self):
         return f"{self.user} + {self.status} + {self.temp}"
+
+class MotionDetectors(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    time = models.DateField(auto_now_add=True)
+    status = models.BooleanField()

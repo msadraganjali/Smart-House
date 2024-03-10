@@ -4,6 +4,7 @@ from random import randint
 from . import forms
 from . import models
 from api.views import updateAccuWheather
+from api.models import MotionDetectors
 from home import models as homeModel
 # import haye django
 from django.urls import reverse_lazy
@@ -89,6 +90,14 @@ class DeviceListView(ListView):
         if models.device.objects.all().filter(user = self.request.user):
             context['device1'] = models.device.objects.all().filter(user = self.request.user)[0]
             context['device2'] = models.device.objects.all().filter(user = self.request.user)[1]
+            context['lastData'] = models.GrafData.objects.all().filter(user = self.request.user).last()
+            context['motion_detected'] = MotionDetectors.objects.all().filter(user = self.request.user).first()
+            print(context["lastData"])
+            pack = models.Package.objects.filter(user = self.request.user, enabled = True).first()
+            if pack.name != "خالی":
+                context['package_alert'] = True
+            else:
+                context['package_alert'] = False
         return context
  
     
@@ -113,7 +122,6 @@ def post_device(request):
             )
                         
             models.device.objects.all().filter(device = form.cleaned_data['device'].device).update(status = form.cleaned_data['status'], data = form.cleaned_data["data"])
-    return redirect("login")
     user = request.user
     usage = homeModel.GrafData.objects.all().filter(user=user.uuid)
     home = homeModel.Home.objects.all().filter(user=user.uuid).first()
@@ -197,8 +205,8 @@ def post_device(request):
     
     if not home:
         home = None
-    # check kardan queryset haye khane
-    return render(request, 'account/profile.html', {"home": home, "user": user, "usage": usage, "e_total_usage": e_total_usage, "w_total_usage": w_total_usage, "g_total_usage": g_total_usage, "int_e" : int_e, "int_g" : int_g, "int_w" : int_w,"is_fire" : is_fire, "temp" : temp, "total_temp" : total_temp, "isEarthHum":isEarthHum, "hum": hum, "total_hum": total_hum, "motion" : motion, "total_gas" : gas, "gas" : gas, "cityStatus":cityStatus, "cityTemp":cityTemp})
+    motion_detected = MotionDetectors.objects.all().filter(user = request.user).first()    # check kardan queryset haye khane
+    return render(request, 'account/profile.html', {"home": home, "user": user, "usage": usage, "e_total_usage": e_total_usage, "w_total_usage": w_total_usage, "g_total_usage": g_total_usage, "int_e" : int_e, "int_g" : int_g, "int_w" : int_w,"is_fire" : is_fire, "temp" : temp, "total_temp" : total_temp, "isEarthHum":isEarthHum, "hum": hum, "total_hum": total_hum, "motion" : motion, "total_gas" : gas, "gas" : gas, "cityStatus":cityStatus, "cityTemp":cityTemp, 'motion_detected' : motion_detected})
 
 
 class CommentListView(ListView):
@@ -214,14 +222,13 @@ class listPackage(ListView):
     queryset = models.Package.objects.all().order_by('-id').filter(visible = True)
     
     def get_context_data(self , **kwargs):
-        context = super().get_context_data(**kwargs)
-        if models.Package.objects.filter(user = self.request.user):
-            context['packs_send'] = True
-            context['pack1'] = models.Package.objects.all().filter(user = self.request.user).order_by('-id')[0]
-            context['pack2'] = models.Package.objects.all().filter(user = self.request.user).order_by('-id')[1]
-            context['pack3'] = models.Package.objects.all().filter(user = self.request.user).order_by('-id')[2]
-        else:
-            context['packs_send'] = False
+        context = super().get_context_data(**kwargs)           
+        context['pack1'] = models.Package.objects.all().filter(user = self.request.user).order_by('id')[2]
+        context['pack2'] = models.Package.objects.all().filter(user = self.request.user).order_by('id')[3]
+        context['pack3'] = models.Package.objects.all().filter(user = self.request.user).order_by('id')[0]
+        context['pack4'] = models.Package.objects.all().filter(user = self.request.user).order_by('id')[4]
+        context['pack5'] = models.Package.objects.all().filter(user = self.request.user).order_by('id')[1]
+        context['motion_detected'] = MotionDetectors.objects.all().filter(user = self.request.user).first()
         return context
 
 def sendPackage(request):
@@ -320,5 +327,6 @@ def sendPackage(request):
     
     if not home:
         home = None
+    motion_detected = MotionDetectors.objects.all().filter(user = request.user).first()
     # check kardan queryset haye khane
-    return render(request, 'account/profile.html', {"home": home, "user": user, "usage": usage, "e_total_usage": e_total_usage, "w_total_usage": w_total_usage, "g_total_usage": g_total_usage, "int_e" : int_e, "int_g" : int_g, "int_w" : int_w,"is_fire" : is_fire, "temp" : temp, "total_temp" : total_temp, "isEarthHum":isEarthHum, "hum": hum, "total_hum": total_hum, "motion" : motion, "total_gas" : gas, "gas" : gas, "cityStatus":cityStatus, "cityTemp":cityTemp})
+    return render(request, 'account/profile.html', {"home": home, "user": user, "usage": usage, "e_total_usage": e_total_usage, "w_total_usage": w_total_usage, "g_total_usage": g_total_usage, "int_e" : int_e, "int_g" : int_g, "int_w" : int_w,"is_fire" : is_fire, "temp" : temp, "total_temp" : total_temp, "isEarthHum":isEarthHum, "hum": hum, "total_hum": total_hum, "motion" : motion, "total_gas" : gas, "gas" : gas, "cityStatus":cityStatus, "cityTemp":cityTemp, 'motion_detected' : motion_detected})

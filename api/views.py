@@ -14,7 +14,7 @@ from . import models as apiModels
 from home import models
 
 def updateAccuWheather(request):
-    lastApiRequest = apiModels.AccuWheather.objects.get(user = request.user.uuid)
+    lastApiRequest = apiModels.AccuWheather.objects.filter(user = request.user.uuid).first()
     nowTime = datetime.now()
     if lastApiRequest.time + timedelta(minutes=2) > nowTime:
         return lastApiRequest
@@ -95,7 +95,6 @@ class postStatusToHome(APIView):
         hum = float(hum)
         motion = bool(motion)
         gas = int(gas)
-        print(gas)
         # gereftan khane
         home = models.Home.objects.filter(uuid=uuid).first()
         # check kardan khane
@@ -150,8 +149,8 @@ class postStatusToHome(APIView):
         home.score = last_score + score_change
         home_score = home.score
         # save kardan log
-        models.localLog.objects.create(name="usagecheck", user=request.user, detail={
-                                       "usage": usage_str, "score": last_score + score_change}, usage=usage)
+        # models.localLog.objects.create(name="usagecheck", user=request.user, detail={
+        #                                "usage": usage_str, "score": last_score + score_change}, usage=usage)
         models.GrafData.objects.create(e_usage=usage, user=request.user, is_fire =  is_accident, temp = temp, isEarthHum = isEarthHum, hum = hum, motion = motion, gas = gas)
         # check kardane emtiaz
         if home_score <= -20:
@@ -165,6 +164,14 @@ class postStatusToHome(APIView):
             home.total_score = last_total_score + 1
         # save kardan taghirat
         home.save()
+        userPackage = models.Package.objects.all().filter(user = self.request.user, enabled = True).first()
+        userMotion = apiModels.MotionDetectors.objects.get(user = self.request.user)
+        if userPackage.name == "خروج از منزل":
+            if motion:
+                userMotion.status = True
+        else:
+            userMotion.status = False
+        userMotion.save()
         return Response({"status" : "you are sending data successfuly"}, status=status.HTTP_200_OK)
 
 # sakhtan khane be vasile ye api

@@ -7,6 +7,7 @@ from home.models import GrafData
 from home import models as homeModel
 from .forms import UserCreationForm2
 from api.views import updateAccuWheather
+from api.models import AccuWheather, MotionDetectors
 
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, HttpResponse
@@ -14,6 +15,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import FormView, CreateView
 from django.urls import reverse_lazy
+from datetime import datetime
 from django.contrib.auth import views as auth_views
 
 # fucntion marbot be load profile
@@ -104,7 +106,8 @@ def profile(request):
     if not home:
         home = None
     # check kardan queryset haye khane
-    return render(request, 'account/profile.html', {"home": home, "user": user, "usage": usage, "e_total_usage": e_total_usage, "w_total_usage": w_total_usage, "g_total_usage": g_total_usage, "int_e" : int_e, "int_g" : int_g, "int_w" : int_w,"is_fire" : is_fire, "temp" : temp, "total_temp" : total_temp, "isEarthHum":isEarthHum, "hum": hum, "total_hum": total_hum, "motion" : motion, "total_gas" : gas, "gas" : gas, "cityStatus":cityStatus, "cityTemp":cityTemp})
+    motion_detected = MotionDetectors.objects.all().filter(user = request.user).first()
+    return render(request, 'account/profile.html', {"home": home, "user": user, "usage": usage, "e_total_usage": e_total_usage, "w_total_usage": w_total_usage, "g_total_usage": g_total_usage, "int_e" : int_e, "int_g" : int_g, "int_w" : int_w,"is_fire" : is_fire, "temp" : temp, "total_temp" : total_temp, "isEarthHum":isEarthHum, "hum": hum, "total_hum": total_hum, "motion" : motion, "total_gas" : gas, "gas" : gas, "cityStatus":cityStatus, "cityTemp":cityTemp, 'motion_detected' : motion_detected})
 
 # klass marbot be register kardan karbar
 class RegisterFormView(FormView):
@@ -114,7 +117,22 @@ class RegisterFormView(FormView):
     success_url = reverse_lazy("login")
     # dar sorati ke form bedone khata az taraf karbar masalan entekhabe ramz obore kootah(nabood)
     def form_valid(self, form):
-        form.save()
+        user = form.save()
+        homeModel.Package.objects.create(name = "خالی", description="خالی", visible = True, enabled=True, user = user)
+        homeModel.Package.objects.create(name = "مسافرت", description="مسافرت", visible = True, enabled=False, user = user)
+        exiHome = homeModel.Package.objects.create(name = "خروج از منزل", description="خروج از منزل", visible = True, enabled=False, user = user)
+        homeModel.Package.objects.create(name = "صبح", description="صبح", visible = True, enabled=False, user = user)
+        homeModel.Package.objects.create(name = "کودک", description="کودک", visible = True, enabled=False, user = user)
+        livingLamp = homeModel.device.objects.create(name = "living-lamp" , status = 0, user = user, color="red", btn="danger", element="برق", password = 1234, data = 255)
+        homeModel.device.objects.create(name = "room-lamp" , status = 0, user = user, color="red", btn="danger", element="برق", password = 1234, data = 255)
+        homeModel.device.objects.create(name = "yard-lamp" , status = 0, user = user, color="red", btn="danger", element="برق", password = 1234, data = 255)
+        homeModel.TimeOfDevice.objects.create(user= user, device_id = 1, time = "15:18:00:00", time2 ="23:00:00:00", data=255, status=1, isPackMode=True, package_id=exiHome.pk)
+        accuWheader = requests.get("https://dataservice.accuweather.com/currentconditions/v1/208194?apikey=BAi9KZGpuijwO3pKNPAgqb39uR54YJfm&language=fa-ir")
+        responseCity = accuWheader.json()
+        cityStatus = responseCity[0]["WeatherText"]
+        cityTemp = responseCity[0]["Temperature"]["Metric"]["Value"]
+        AccuWheather.objects.create(temp = cityTemp, user = user, status = cityStatus)
+        MotionDetectors.objects.create(user = user, status=False)
         return super().form_valid(form)
 
 # fucntion marbot be logout kardan

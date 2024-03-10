@@ -14,6 +14,7 @@ class physicsOrderSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 class deviceSerializer(serializers.ModelSerializer):
+    device = serializers.IntegerField(source= 'id')
     class Meta:
         model = homeModels.device
         fields = "__all__"

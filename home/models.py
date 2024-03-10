@@ -91,7 +91,6 @@ class device(models.Model):
     )
 
     name = models.CharField(max_length=255)
-    device = models.IntegerField(primary_key=True)
     status = models.SmallIntegerField(choices = DEVICE_STATUS_CHOICES)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     color = models.CharField(max_length=10, default="blue")
@@ -141,7 +140,6 @@ class Package(models.Model):
     description = models.TextField()
     visible = models.BooleanField()
     user = models.ForeignKey(User, on_delete = models.CASCADE, related_name = 'packs')
-    devices = models.ManyToManyField(device, related_name="package")
 
     def __str__(self):
         return f"{self.user.username} + {self.name}"
@@ -159,6 +157,7 @@ class TimeOfDevice(models.Model):
     device = models.ForeignKey(device, on_delete=models.CASCADE)
     time = models.TimeField()
     time2 = models.TimeField()
+    data = models.IntegerField()
     status = models.SmallIntegerField(choices = DEVICE_STATUS_CHOICES)
     isPackMode = models.BooleanField(default=False)
     package = models.ForeignKey(Package, on_delete=models.CASCADE, related_name="timeOfDevice")
