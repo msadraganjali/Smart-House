@@ -6,3 +6,4 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     uuid = models.UUIDField(primary_key=True ,default = uuid.uuid4,)
     nid = models.CharField(max_length=11, null=False)
+    phone = models.CharField(max_length=11)

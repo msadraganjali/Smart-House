@@ -5,9 +5,13 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
+from rest_framework.exceptions import APIException
+
+from django.conf import settings
 
 from datetime import timedelta
 from datetime import datetime
+from kavenegar import KavenegarAPI
 
 from . import serializers
 from . import models as apiModels
@@ -32,8 +36,21 @@ def updateAccuWheather(request):
                 return lastApiRequest
             else:
                 return lastApiRequest
-        except:
+        except APIException:
             return lastApiRequest
+
+def smsSendApi(request, meseage, userPhone):
+    try:
+        api = KavenegarAPI(settings.KAVENEGAR_API['API_KEY'], timeout=20)
+        params = {
+            'sender': f'{settings.KAVENEGAR_API['Call_Line']}',
+            'receptor': f'{userPhone}',
+            'message': f'{meseage}',
+        } 
+        response = api.sms_send(params)
+        print(response)
+    except APIException as e: 
+            print(e)
 
 # klass gereftan khane besorat api
 class getHome(generics.RetrieveAPIView):
@@ -97,6 +114,7 @@ class postStatusToHome(APIView):
         gas = int(gas)
         # gereftan khane
         home = models.Home.objects.filter(uuid=uuid).first()
+        
         # check kardan khane
         if not home:
             return Response({"[SYSTEM_ERROR] => error_meseage": "the uuid not found..."}, status=status.HTTP_400_BAD_REQUEST)
@@ -169,9 +187,17 @@ class postStatusToHome(APIView):
         if userPackage.name == "خروج از منزل":
             if motion:
                 userMotion.status = True
+                smsSendApi(meseage="اخطار: در زمان خروج شما از خانه حرکت تشخیص داده شد.", request=self.request, userPhone=self.request.user.phone)
         else:
             userMotion.status = False
         userMotion.save()
+        
+        if is_accident:
+            smsSendApi(meseage="اخطار: خانه شما دچار حریق شده است.", request=self.request, userPhone=self.request.user.phone)
+        
+        if gas >= 100:
+            smsSendApi(meseage="اخطار: سطح گاز در خانه شما از حد عادی بالاتر رفته است.", request=self.request, userPhone=self.request.user.phone)
+        
         return Response({"status" : "you are sending data successfuly"}, status=status.HTTP_200_OK)
 
 # sakhtan khane be vasile ye api

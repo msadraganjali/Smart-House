@@ -91,6 +91,11 @@ class DeviceListView(ListView):
             context['device1'] = models.device.objects.all().filter(user = self.request.user)[0]
             context['device2'] = models.device.objects.all().filter(user = self.request.user)[1]
             context['lastData'] = models.GrafData.objects.all().filter(user = self.request.user).last()
+            if context['lastData'].gas >= 100:
+                gasStatus = True
+            else:
+                gasStatus = False
+            context['gasStatus'] = gasStatus
             context['motion_detected'] = MotionDetectors.objects.all().filter(user = self.request.user).first()
             print(context["lastData"])
             pack = models.Package.objects.filter(user = self.request.user, enabled = True).first()
@@ -229,6 +234,11 @@ class listPackage(ListView):
         context['pack4'] = models.Package.objects.all().filter(user = self.request.user).order_by('id')[4]
         context['pack5'] = models.Package.objects.all().filter(user = self.request.user).order_by('id')[1]
         context['motion_detected'] = MotionDetectors.objects.all().filter(user = self.request.user).first()
+        if models.GrafData.objects.all().filter(user = self.request.user).last().gas >= 100:
+            gasStatus = True
+        else:
+            gasStatus = False
+        context['gasStatus'] = gasStatus
         return context
 
 def sendPackage(request):

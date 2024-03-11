@@ -31,6 +31,13 @@
                         <p class="invalid-feedback" style="color: 'red'; direction: rtl;">{{ form.nid.errors | first }}</p>
                       </div>
                     </div>
+                    <div class="d-flex flex-row align-items-center mb-4">
+                      <div class="form-outline flex-fill mb-0">
+                        <label class="form-label" for="phone">:شماره همراه</label>
+                        <input type="phone" id="phone" class="form-control {% if form.phone.errors %} is-invalid {% endif %} " name="phone" />
+                        <p class="invalid-feedback" style="color: 'red'; direction: rtl;">{{ form.phone.errors | first }}</p>
+                      </div>
+                    </div>
                     <!-- field kalame oboor -->
                     <div class="d-flex flex-row align-items-center mb-4">
                       <div class="form-outline flex-fill mb-0">

@@ -36,6 +36,12 @@ def profile(request):
     cityTemp = accuWheatherValue.temp
     cityStatus = accuWheatherValue.status
     
+    gasStatus = False
+    if gas.gas >= 100:
+        gasStatus = True
+    else:
+        gasStatus = False
+    
     if motion:
         motion = motion.motion
     else:
@@ -107,7 +113,7 @@ def profile(request):
         home = None
     # check kardan queryset haye khane
     motion_detected = MotionDetectors.objects.all().filter(user = request.user).first()
-    return render(request, 'account/profile.html', {"home": home, "user": user, "usage": usage, "e_total_usage": e_total_usage, "w_total_usage": w_total_usage, "g_total_usage": g_total_usage, "int_e" : int_e, "int_g" : int_g, "int_w" : int_w,"is_fire" : is_fire, "temp" : temp, "total_temp" : total_temp, "isEarthHum":isEarthHum, "hum": hum, "total_hum": total_hum, "motion" : motion, "total_gas" : gas, "gas" : gas, "cityStatus":cityStatus, "cityTemp":cityTemp, 'motion_detected' : motion_detected})
+    return render(request, 'account/profile.html', {"home": home, "user": user, "usage": usage, "e_total_usage": e_total_usage, "w_total_usage": w_total_usage, "g_total_usage": g_total_usage, "int_e" : int_e, "int_g" : int_g, "int_w" : int_w,"is_fire" : is_fire, "temp" : temp, "total_temp" : total_temp, "isEarthHum":isEarthHum, "hum": hum, "total_hum": total_hum, "motion" : motion, "total_gas" : gas, "gas" : gas, "cityStatus":cityStatus, "cityTemp":cityTemp, 'motion_detected' : motion_detected, "gasStatus" : gasStatus})
 
 # klass marbot be register kardan karbar
 class RegisterFormView(FormView):

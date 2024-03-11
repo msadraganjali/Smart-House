@@ -39,7 +39,7 @@
             <div class="btn-group" role="group" aria-label="Basic example">
               <!-- age karbar login karde bashe -->
               {% if user.is_authenticated %}
-              <a style="font-size: 18px;" href="http://localhost:8000/admin/logout/"
+              <a style="font-size: 18px;" href="{% url 'logout' %}"
                 class="btn btn-danger mr-2">خروج</a>
               <a style="font-size: 18px;" href="{% url 'profile' %}" class="btn btn-info">پروفایل</a>
             </div>
