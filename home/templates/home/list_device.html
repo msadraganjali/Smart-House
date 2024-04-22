@@ -9,6 +9,7 @@
     <!-- load kardan bootstrap-css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/font.css' %}">
+    {% comment %} <meta http-equiv="refresh" content="5"> {% endcomment %}
     {% block meta %}
     
     {% endblock meta %}
@@ -44,13 +45,13 @@
         <div style="margin-top: 5%; margin-bottom: 20%; direction: rtl;" class="container">
           <div class="row">
             <div class="col card" style="color: #198a19 !important;;background-color: white; padding-right: 5%; padding-left: 5%; padding-top: 1%; padding-bottom: 1%;">
-              دما محیط حیوانات: {{lastData.temp}}ºC  
+              دما محیط حیوانات: {{lastData.temp2}}ºC  
             </div>
             <div class="col card" style="color: #198a19 !important;;background-color: white; padding-right: 5%; padding-left: 5%; padding-top: 1%; padding-bottom: 1%;">
               دما خانه: {{lastData.temp}}ºC  
             </div>
             <div class="col card" style="color: #5352ed; background-color: white; padding-right: 5%; padding-left: 5%; padding-top: 1%; padding-bottom: 1%;">
-              رطوبت محیط حیوانات: %{{lastData.hum}}  
+              رطوبت‌محیط‌حیوانات: %{{lastData.hum}}  
             </div>
             <div class="col card" style="color: #5352ed; background-color: white; padding-right: 5%; padding-left: 5%; padding-top: 1%; padding-bottom: 1%;">
               {% if lastData.isEarthHum %}
@@ -112,9 +113,12 @@
                     <div class="card-body">
                       <h5 class="card-title" style="font-family: 'Vazir' !important;">روشنایی سالن</h5>
                       <div class="card-text"><div class="form-check form-switch">
-                        <input name="status" class="form-check-input" type="checkbox" role="switch" id="status" {% if device1.status %}checked{% endif %}>
-                        <input type="hidden" name="device" id="device" value="{{ device1.device }}">
-                        <label class="form-check-label" for="status">روشن/خاموش:</label>
+                        <input name="status" name="status" class="form-check-input" type="checkbox" role="switch" id="status" {% if device1.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device1" value="{{ device1.id }}">
+                        <input type="hidden" name="red" id="device1" value="255">
+                        <input type="hidden" name="green" id="device1" value="255">
+                        <input type="hidden" name="blue" id="device1" value="255">
+                        <label class="form-check-label" for="device1">روشن/خاموش:</label>
                       </div>
                       <label for="data" class="form-label">شدت روشنایی:</label>
                       <input name="data" type="range" value="{{device1.data}}" min="0" max="255" class="form-range" id="data">
@@ -135,9 +139,12 @@
                     <div class="card-body">
                       <h5 class="card-title" style="font-family: 'Vazir' !important;">روشنایی اتاق</h5>
                       <div class="card-text"><div class="form-check form-switch">
-                        <input name="status" class="form-check-input" type="checkbox" role="switch" id="status" {% if device2.status %}checked{% endif %}>
-                        <input type="hidden" name="device" id="device" value="{{ device2.device }}">
-                        <label class="form-check-label" for="status">روشن/خاموش:</label>
+                        <input name="status" name="status" class="form-check-input" type="checkbox" role="switch" id="status" {% if device2.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device2" value="{{ device2.id }}">
+                        <input type="hidden" name="red" id="device2" value="255">
+                        <input type="hidden" name="green" id="device2" value="255">
+                        <input type="hidden" name="blue" id="device2" value="255">
+                        <label class="form-check-label" for="device2">روشن/خاموش:</label>
                       </div>
                       <label for="data" class="form-label">شدت روشنایی:</label>
                       <input name="data" type="range" value="{{device2.data}}" min="0" max="255" class="form-range" id="data">
@@ -154,19 +161,24 @@
             <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img style="height: 70%; position: absolute; top: 12%; left: 68%;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDFP4My8tfAII9m-zC5nSTaS2SJv6aGm5mBm2hO-PQNg&s" style="border-radius: 8px !important;" class="img-fluid rounded-start" alt="...">
+                  <img style="height: 44%; position: absolute; top: 25%; left: 68%;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDFP4My8tfAII9m-zC5nSTaS2SJv6aGm5mBm2hO-PQNg&s" style="border-radius: 8px !important;" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                   <form action="{% url 'home:post_device' %}" method="get">
                     <div class="card-body">
                       <h5 class="card-title" style="font-family: 'Vazir' !important;">روشنایی حیاط</h5>
                       <div class="card-text"><div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
-                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                        <input name="status" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device3.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device3" value="{{ device3.id }}">
+                        <input type="hidden" name="data" id="device3" value="255">
+                        <label class="form-check-label" for="device3">روشن/خاموش:</label>
                       </div>
-                      <label for="customRange1" class="form-label">شدت روشنایی:</label>
-                      <input type="range" class="form-range" min="0" max="255" id="customRange1">
+                      <label for="customRange1" class="form-label">شدت روشنایی قرمز:</label>
+                      <input name="red" type="range" value="{{device3.red}}" min="0" max="255" class="form-range" id="data">
+                      <label for="customRange1" class="form-label">شدت روشنایی آبی:</label>
+                      <input name="blue" type="range" value="{{device3.blue}}" min="0" max="255" class="form-range" id="data">
+                      <label for="customRange1" class="form-label">شدت روشنایی سبز:</label>
+                      <input name="green" type="range" value="{{device3.green}}" min="0" max="255" class="form-range" id="data">
                     </div>
                       <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
                     </div>  
@@ -177,16 +189,22 @@
             <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img style="height: 86%; position: absolute; top: 3%; left: 66%;" src="https://cdn3.vectorstock.com/i/1000x1000/22/07/tv-design-vector-5962207.jpg" style="border-radius: 8px !important;" class="img-fluid rounded-start" alt="...">
+                  <img style="height: 55%; position: absolute; top: 19%; left: 66%;" src="https://cdn3.vectorstock.com/i/1000x1000/22/07/tv-design-vector-5962207.jpg" style="border-radius: 8px !important;" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                   <form action="{% url 'home:post_device' %}" method="get">
                     <div class="card-body">
                       <h5 class="card-title" style="font-family: 'Vazir' !important;">تلوزیون</h5>
                       <div class="card-text"><div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
-                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                        <input type="hidden" name="device" id="device4" value="{{ device4.id }}">
+                        <div style="position: relative; padding-top: 23%;">
+                          <input name="status" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device4.status %}checked{% endif %}>
+                          <input type="hidden" name="red" id="device4" value="255">
+                          <input type="hidden" name="green" id="device4" value="255">
+                          <input type="hidden" name="blue" id="device4" value="255">
+                          <label class="form-check-label" for="device4">روشن/خاموش:</label>
+                          <input type="hidden" name="data" value="255" />
+                        </div>
                       </div>
                     </div>
                       <br><br>
@@ -202,16 +220,20 @@
             <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img style="height: 86%; position: absolute; top: 7%; left: 71%;" src="https://www.shutterstock.com/image-vector/vector-modern-black-electric-heater-260nw-348752501.jpg" style="border-radius: 8px !important;" class="img-fluid rounded-start" alt="...">
+                  <img style="height: 86%; position: absolute; top: 7%; left: 71%;" src="{% static 'img/vector-modern-black-electric-heater-260nw-348752501.webp' %}" style="border-radius: 8px !important;" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                   <form action="{% url 'home:post_device' %}" method="get">
                     <div class="card-body">
                       <h5 class="card-title" style="font-family: 'Vazir' !important;">بخاری برقی</h5>
                       <div class="card-text"><div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
-                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                        <input name="status" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device5.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device5" value="{{ device5.id }}">
+                        <input type="hidden" name="red" id="device5" value="255">
+                        <input type="hidden" name="green" id="device5" value="255">
+                        <input type="hidden" name="blue" id="device5" value="255">
+                        <label class="form-check-label" for="device5">روشن/خاموش:</label>
+                        <input type="hidden" name="data" value="255" />
                       </div>
                     </div>
                       <br>
@@ -231,9 +253,13 @@
                     <div class="card-body">
                       <h5 class="card-title" style="font-family: 'Vazir' !important;">کولر</h5>
                       <div class="card-text"><div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
-                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                        <input name="status" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device6.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device6" value="{{ device6.id }}">
+                        <input type="hidden" name="red" id="device6" value="255">
+                        <input type="hidden" name="green" id="device6" value="255">
+                        <input type="hidden" name="blue" id="device6" value="255">
+                        <label class="form-check-label" for="device6">روشن/خاموش:</label>
+                        <input type="hidden" name="data" value="255" />
                       </div>
                     </div>
                       <br>
@@ -256,9 +282,13 @@
                     <div class="card-body">
                       <h5 class="card-title" style="font-family: 'Vazir' !important;">در پارکینگ</h5>
                       <div class="card-text"><div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
-                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                        <input name="status" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device7.status %}checked{% endif %}>
+                        <input type="hidden" name="red" id="device7" value="255">
+                        <input type="hidden" name="green" id="device7" value="255">
+                        <input type="hidden" name="blue" id="device7" value="255">
+                        <input type="hidden" name="device" id="device7" value="{{ device7.id }}">
+                        <label class="form-check-label" for="device7">روشن/خاموش:</label>
+                        <input type="hidden" name="data" value="255" />
                       </div>
                     </div>
                       <br>
@@ -271,16 +301,20 @@
             <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img src="https://thumbs.dreamstime.com/z/restaurant-thermo-flask-tea-icon-simple-vector-design-editable-using-commercial-purposes-227834012.jpg" style="border-radius: 8px !important; position: relative; width: 73%; top:1%; right:18%" class="img-fluid rounded-start" alt="...">
+                  <img src="{% static 'img/restaurant-thermo-flask-tea-icon-simple-vector-design-editable-using-commercial-purposes-227834012.webp' %}" style="border-radius: 8px !important; position: relative; width: 73%; top:1%; right:18%" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                   <form action="{% url 'home:post_device' %}" method="get">
                     <div class="card-body">
                       <h5 class="card-title" style="font-family: 'Vazir' !important;">چای‌ساز</h5>
                       <div class="card-text"><div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
-                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                        <input name="status" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device8.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device8" value="{{ device8.id }}">
+                        <input type="hidden" name="red" id="device3" value="255">
+                        <input type="hidden" name="green" id="device3" value="255">
+                        <input type="hidden" name="blue" id="device3" value="255">
+                        <label class="form-check-label" for="device8">روشن/خاموش:</label>
+                        <input type="hidden" name="data" value="255" />
                       </div>
                     </div>
                     <br>
@@ -303,9 +337,13 @@
                     <div class="card-body">
                       <h5 class="card-title" style="font-family: 'Vazir' !important;">آبیاری گلدان ها</h5>
                       <div class="card-text"><div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
-                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                        <input name="status" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device9.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device9" value="{{ device9.id }}">
+                        <label class="form-check-label" for="device9">روشن/خاموش:</label>
+                        <input type="hidden" name="red" id="device3" value="255">
+                        <input type="hidden" name="green" id="device3" value="255">
+                        <input type="hidden" name="blue" id="device3" value="255">
+                        <input type="hidden" name="data" value="255" />
                       </div>
                     </div>
                     <br>
@@ -325,9 +363,13 @@
                     <div class="card-body">
                       <h5 class="card-title" style="font-family: 'Vazir' !important;">افزایش سطح آب استخر</h5>
                       <div class="card-text"><div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
-                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                        <input name="status" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device10.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device10" value="{{ device10.id }}">
+                        <label class="form-check-label" for="device10">روشن/خاموش:</label>
+                        <input type="hidden" name="red" id="device3" value="255">
+                        <input type="hidden" name="green" id="device3" value="255">
+                        <input type="hidden" name="blue" id="device3" value="255">
+                        <input type="hidden" name="data" value="255" />
                       </div>
                     </div>
                     <br>
@@ -350,9 +392,39 @@
                     <div class="card-body">
                       <h5 class="card-title" style="font-family: 'Vazir' !important;">قفل درب ورودی</h5>
                       <div class="card-text"><div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device.status %}checked{% endif %}>
-                        <input type="hidden" name="device" id="device" value="{{ device.id }}">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">روشن/خاموش:</label>
+                        <input name="status" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device12.status %}checked{% endif %}>
+                        <input type="hidden" name="red" id="device3" value="255">
+                        <input type="hidden" name="green" id="device3" value="255">
+                        <input type="hidden" name="blue" id="device3" value="255">
+                        <input type="hidden" name="device" id="device12" value="{{ device12.id }}">
+                        <label class="form-check-label" for="device12">روشن/خاموش:</label>
+                        <input type="hidden" name="data" value="255" />
+                      </div>
+                    </div>
+                    <br>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://cdn4.vectorstock.com/i/1000x1000/86/88/set-of-home-animals-pets-vector-15498688.jpg" style="border-radius: 8px !important; position: relative; top: 6%; width: 75%; right: 12%;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">غذا حیوانات</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input name="status" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device11.status %}checked{% endif %}>
+                        <input type="hidden" name="red" id="device3" value="255">
+                        <input type="hidden" name="green" id="device3" value="255">
+                        <input type="hidden" name="blue" id="device3" value="255">
+                        <input type="hidden" name="device" id="device11" value="{{ device11.id }}">
+                        <label class="form-check-label" for="device11">روشن/خاموش:</label>
+                        <input type="hidden" name="data" value="255" />
                       </div>
                     </div>
                     <br>
@@ -363,12 +435,62 @@
               </div>
             </div>
           </div>
-          {% comment %} {% else %}
-            <div style="font-family: 'Vazir' !important;direction: rtl;" class="alert alert-warning alert-dismissible fade show" role="alert">
-              <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffca2c}</style><path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480H40c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24V296c0 13.3 10.7 24 24 24s24-10.7 24-24V184c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>                                         هیچ موردی برای نمایش   <strong class="alert-link" >وجود ندارد.</strong> 
-              <button style="margin-right: 95%;" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div> 
-          {% endif %} {% endcomment %}
+          <br>
+          <dive style="margin-right:1%" class="row justify-content-around">
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important;">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://img.freepik.com/premium-vector/picnic-gas-stove-white-background-vector-illustration-cartoon_764382-6173.jpg" style="border-radius: 8px !important; position: relative; top: 6%; width: 75%; right: 12%;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">ماهیتابه برقی</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input name="status" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device13.status %}checked{% endif %}>
+                        <input type="hidden" name="red" id="device3" value="255">
+                        <input type="hidden" name="green" id="device3" value="255">
+                        <input type="hidden" name="blue" id="device3" value="255">
+                        <input type="hidden" name="device" id="device13" value="{{ device13.id }}">
+                        <label class="form-check-label" for="device13">روشن/خاموش:</label>
+                        <input type="hidden" name="data" value="255" />
+                      </div>
+                    </div>
+                    <br>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="card col-6" style="max-width: 540px; border-radius: 8px !important; margin-right:6%">
+              <div class="row g-0">
+                <div class="col-md-4">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5-PYVDLCEWyxEnogoH_FIIRX4TtjHuBnjLHDykQRXYw&s" style="border-radius: 8px !important; position: relative; top: 14%; width: 75%; right: 16%;" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                  <form action="{% url 'home:post_device' %}" method="get">
+                    <div class="card-body">
+                      <h5 class="card-title" style="font-family: 'Vazir' !important;">در پنجره</h5>
+                      <div class="card-text"><div class="form-check form-switch">
+                        <input name="status" class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" {% if device14.status %}checked{% endif %}>
+                        <input type="hidden" name="device" id="device14" value="{{ device14.id }}">
+                        <label class="form-check-label" for="device14">روشن/خاموش:</label>
+                        <input type="hidden" name="data" value="255" />
+                        <input type="hidden" name="red" id="device3" value="255">
+                        <input type="hidden" name="green" id="device3" value="255">
+                        <input type="hidden" name="blue" id="device3" value="255">
+                      </div>
+                    </div>
+                    <br>
+                      <p class="card-text"><small class="text-body-secondary"><button type="submit" class="btn btn-primary">ثبت تغییرات</button></small></p>
+                    </div>  
+                  </form>
+                </div>
+              </div>
+          </div>
+          <br>
+          </div>
         </div>
       </section>
     </div>

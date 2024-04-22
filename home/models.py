@@ -72,6 +72,8 @@ class GrafData(models.Model):
     hum = models.FloatField()
     gas = models.IntegerField()
     motion = models.BooleanField()
+    temp2 = models.FloatField()
+    distance = models.IntegerField()
 
     def __str__(self):
         return f"usage: {str(self.e_usage)}, date: {self.created}"
@@ -99,6 +101,9 @@ class device(models.Model):
     password = models.CharField(max_length=50)
     data = models.IntegerField(null=True)
     time = models.TimeField(null=True, blank=True)
+    red = models.IntegerField(null=True)
+    blue = models.IntegerField(null=True)
+    green = models.IntegerField(null=True)
 
     def __str__(self):
         return f"{self.user.username}+{self.name}"
@@ -118,10 +123,13 @@ class GUIOrderClassModel(models.Model):
     detail = models.JSONField()
     status = models.BooleanField(default=False)
     device = models.ForeignKey(device, on_delete=models.CASCADE)
-    home = models.ForeignKey(Home, on_delete=models.CASCADE)
+    home = models.ForeignKey(Home, on_delete=models.CASCADE, null = True)
     color = models.CharField(max_length=10, default="blue")
     btn = models.CharField(max_length=10, default="blue")
     data = models.IntegerField(null=True)
+    red = models.IntegerField(null=True)
+    blue = models.IntegerField(null=True)
+    green = models.IntegerField(null=True)
 
 class Comment(models.Model):
     user = models.ForeignKey(User, models.SET_NULL, null=True)
@@ -160,4 +168,10 @@ class TimeOfDevice(models.Model):
     data = models.IntegerField()
     status = models.SmallIntegerField(choices = DEVICE_STATUS_CHOICES)
     isPackMode = models.BooleanField(default=False)
+    red = models.IntegerField(null=True)
+    blue = models.IntegerField(null=True)
+    green = models.IntegerField(null=True)
     package = models.ForeignKey(Package, on_delete=models.CASCADE, related_name="timeOfDevice")
+    
+    def __str__(self):
+        return self.package.name

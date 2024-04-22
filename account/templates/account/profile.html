@@ -105,15 +105,15 @@
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <p class="mb-0">
-                <p class="text-muted mb-0">{% if home.electricity_number  %}{{ home.electricity_number }}{% else %}<p style="color:#d26262 !important; margin:0 !important; padding:0 !important;">.دریافت نشده</p>{% endif %}</p>:شماره‌کنتوربرق </p>
+                <p class="text-muted mb-0">{% if home.electricity_number  %}{{ home.electricity_number }}{% else %}<p style="color:#d26262 !important; margin:0 !important; padding:0 !important;">.دریافت نشده</p>{% endif %}</p>:شماره‌اشتراک‌کنتوربرق </p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <p class="mb-0">
-                <p class="text-muted mb-0">{% if home.whater_number  %}{{ home.whater_number }}{% else %}<p style="color:#d26262 !important; margin:0 !important; padding:0 !important;">.دریافت نشده</p>{% endif %}</p>:شماره‌کنتورآب </p>
+                <p class="text-muted mb-0">{% if home.whater_number  %}{{ home.whater_number }}{% else %}<p style="color:#d26262 !important; margin:0 !important; padding:0 !important;">.دریافت نشده</p>{% endif %}</p>:شماره‌‌اشتراک‌کنتورآب </p>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center p-3">
                 <p class="mb-0">
-                <p class="text-muted mb-0">{% if home.gaz_number  %}{{ home.gaz_number }}{% else %}<p style="color:#d26262 !important; margin:0 !important; padding:0 !important;">.دریافت نشده</p>{% endif %}</p>:شماره‌کنتورگاز</p>
+                <p class="text-muted mb-0">{% if home.gaz_number  %}{{ home.gaz_number }}{% else %}<p style="color:#d26262 !important; margin:0 !important; padding:0 !important;">.دریافت نشده</p>{% endif %}</p>:شماره‌اشتراک‌کنتورگاز</p>
               </li>
             </ul>
           </div>
@@ -129,28 +129,6 @@
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0">{{ user.username }}</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">شماره شناسه کاربر:</p>
-              </div>
-              <div class="col-sm-9">
-                <p class="text-muted mb-0">{{ user.uuid }}</p>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-sm-3">
-                <p class="mb-0">شماره‌شناسه‌خانه‌کاربر:</p>
-              </div>
-              <div class="col-sm-9">
-                {% if home.uuid %}
-                  <p class="text-muted mb-0">{{ home.uuid }}</p>
-                {% else %}
-                  <p class="text-muted mb-0" style="color:#d26262 !important; margin:0 !important; padding:0 !important;">دریافت نشده.</p>
-                {% endif %}
               </div>
             </div>
             <hr>
@@ -195,7 +173,16 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">دمای خانه:</p>
+                <p class="mb-0">دمای محیط حیوانات:</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0" style="color: #6cb36c !important;" >{{ temp2 }}ºC</p>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">دمای محیط خانه:</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0" style="color: #6cb36c !important;" >{{ temp }}ºC</p>
@@ -204,7 +191,7 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">رطوبت خانه:</p>
+                <p class="mb-0">رطوبت محیط حیوانات:</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0" style="color: #6cb36c !important;" >{{ hum }}%</p>
@@ -213,7 +200,7 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">رطوبت گلدان:</p>
+                <p class="mb-0">رطوبت خاک گلدان:</p>
               </div>
               {% if isEarthHum %}
                 <div class="col-sm-9">
@@ -228,7 +215,7 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">میزان مصرف برق:</p>
+                <p class="mb-0">شماره کنتر برق:</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0" style="color: #d26262 !important;">{{ int_e }} کیلووات</p>
@@ -237,7 +224,7 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">میزان مصرف آب:</p>
+                <p class="mb-0">شماره کنتر آب:</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0" style="color: #5a5af2 !important;">{{ int_w }} مترمکعب</p>
@@ -246,7 +233,7 @@
             <hr>
             <div class="row">
               <div class="col-sm-3">
-                <p class="mb-0">میزان مصرف گاز:</p>
+                <p class="mb-0">شماره کنتر گاز:</p>
               </div>
               <div class="col-sm-9">
                 <p class="text-muted mb-0" style="color: #f8be53 !important;">{{ int_g }} مترمکعب</p>
@@ -260,6 +247,17 @@
               <div class="col-sm-9">
                 <div class="row">
                   <p class="text-muted mb-0 col" style="color: #d26262 !important">{{gas}} پی‌پی‌ام</p>
+                </div>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">ارتفاع آب استخر: </p>
+              </div>
+              <div class="col-sm-9">
+                <div class="row">
+                  <p class="text-muted mb-0 col" style="color: #5a5af2 !important">{{distance}}cm</p>
                 </div>
               </div>
             </div>
@@ -312,7 +310,7 @@
         labels: [{% for q in usage %} "{{ q.created }}" , {% endfor %}],
         datasets: [{
            // dadan etlaat be nemodare(geraf)(chart) be sorate static
-          label: ' برق',
+          label: ' جریان لحظه‌ای برق',
           data: [{% for e in e_total_usage %} "{{ e }}", {% endfor %}],
           borderWidth: 4,
           borderColor: "red"

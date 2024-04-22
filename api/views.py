@@ -20,11 +20,11 @@ from home import models
 def updateAccuWheather(request):
     lastApiRequest = apiModels.AccuWheather.objects.filter(user = request.user.uuid).first()
     nowTime = datetime.now()
-    if lastApiRequest.time + timedelta(minutes=2) > nowTime:
+    if lastApiRequest.time + timedelta(minutes=30) > nowTime:
         return lastApiRequest
-    elif lastApiRequest.time + timedelta(minutes=2) <= nowTime:
+    elif lastApiRequest.time + timedelta(minutes=30) <= nowTime:
         try:
-            accuWheader = requests.get("https://dataservice.accuweather.com/currentconditions/v1/208194?apikey=BAi9KZGpuijwO3pKNPAgqb39uR54YJfm&language=fa-ir")
+            accuWheader = requests.get("https://dataservice.accuweather.com/currentconditions/v1/208194?apikey=gYcIOAnOquMbLz9GE2kbAFuyh5QQ6ceSd&language=fa-ir")
             if accuWheader.status_code == 200:
                 responseCity = accuWheader.json()
                 cityStatus = responseCity[0]["WeatherText"]
@@ -36,12 +36,14 @@ def updateAccuWheather(request):
                 return lastApiRequest
             else:
                 return lastApiRequest
-        except APIException:
+        except requests.exceptions.ConnectionError:
+            return lastApiRequest
+        except requests.exceptions.ConnectTimeout:
             return lastApiRequest
 
 def smsSendApi(request, meseage, userPhone):
     try:
-        api = KavenegarAPI(settings.KAVENEGAR_API['API_KEY'], timeout=20)
+        api = KavenegarAPI(settings.KAVENEGAR_API['API_KEY'])
         params = {
             'sender': f'{settings.KAVENEGAR_API['Call_Line']}',
             'receptor': f'{userPhone}',
@@ -99,6 +101,8 @@ class postStatusToHome(APIView):
         hum = body['hum']
         motion = body['motion']
         gas = body['gas']
+        temp2 = body['temp2']
+        distance = body['distance']
 
         
         is_end = bool(is_end)
@@ -109,9 +113,11 @@ class postStatusToHome(APIView):
         isEarthHum = bool(isEarthHum)
         usage = int(usage)
         temp = float(temp)
+        temp2 = float(temp2)
         hum = float(hum)
         motion = bool(motion)
         gas = int(gas)
+        distance = int(gas)
         # gereftan khane
         home = models.Home.objects.filter(uuid=uuid).first()
         
@@ -169,7 +175,6 @@ class postStatusToHome(APIView):
         # save kardan log
         # models.localLog.objects.create(name="usagecheck", user=request.user, detail={
         #                                "usage": usage_str, "score": last_score + score_change}, usage=usage)
-        models.GrafData.objects.create(e_usage=usage, user=request.user, is_fire =  is_accident, temp = temp, isEarthHum = isEarthHum, hum = hum, motion = motion, gas = gas)
         # check kardane emtiaz
         if home_score <= -20:
             # moteghayer hay lazem baray ferestadan dastore ghate bargh!
@@ -187,17 +192,26 @@ class postStatusToHome(APIView):
         if userPackage.name == "خروج از منزل":
             if motion:
                 userMotion.status = True
-                smsSendApi(meseage="اخطار: در زمان خروج شما از خانه حرکت تشخیص داده شد.", request=self.request, userPhone=self.request.user.phone)
+                # smsSendApi(meseage="اخطار: در زمان خروج شما از خانه حرکت تشخیص داده شد.", request=self.request, userPhone=self.request.user.phone)
         else:
             userMotion.status = False
         userMotion.save()
         
         if is_accident:
-            smsSendApi(meseage="اخطار: خانه شما دچار حریق شده است.", request=self.request, userPhone=self.request.user.phone)
+            pass
+            # smsSendApi(meseage="اخطار: خانه شما دچار حریق شده است.", request=self.request, userPhone=self.request.user.phone)
         
-        if gas >= 100:
-            smsSendApi(meseage="اخطار: سطح گاز در خانه شما از حد عادی بالاتر رفته است.", request=self.request, userPhone=self.request.user.phone)
+        if gas >= 260:
+            pass
+            # smsSendApi(meseage="اخطار: سطح گاز در خانه شما از حد عادی بالاتر رفته است.", request=self.request, userPhone=self.request.user.phone)
         
+        firstUserObj = models.GrafData.objects.all().filter(user = request.user)
+        firstTime = firstUserObj.first().created
+        
+        if datetime.now() - firstTime >= timedelta(seconds=80):
+            for user in firstUserObj:
+                user.delete()
+        models.GrafData.objects.create(e_usage=usage, user=request.user, is_fire =  is_accident, temp = temp, isEarthHum = isEarthHum, hum = hum, motion = motion, gas = gas, temp2 = temp2, distance = distance)
         return Response({"status" : "you are sending data successfuly"}, status=status.HTTP_200_OK)
 
 # sakhtan khane be vasile ye api

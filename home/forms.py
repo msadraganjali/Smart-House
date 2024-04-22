@@ -15,7 +15,7 @@ class DeviceCreationForm(forms.ModelForm):
 class GUIOrderClassModelCreationForm(forms.ModelForm):
     class Meta:
         model = models.GUIOrderClassModel
-        fields = ["name", "type", "detail", "status", "device", "home", "data"]
+        fields = ["name", "type", "detail", "status", "device", "home", "data", "red", "blue", "green"]
 
 class PackagesCreationForm(forms.ModelForm):
     class Meta:
