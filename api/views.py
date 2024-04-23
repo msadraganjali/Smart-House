@@ -20,9 +20,9 @@ from home import models
 def updateAccuWheather(request):
     lastApiRequest = apiModels.AccuWheather.objects.filter(user = request.user.uuid).first()
     nowTime = datetime.now()
-    if lastApiRequest.time + timedelta(minutes=30) > nowTime:
+    if lastApiRequest.time + timedelta(hours=1) > nowTime:
         return lastApiRequest
-    elif lastApiRequest.time + timedelta(minutes=30) <= nowTime:
+    elif lastApiRequest.time + timedelta(hours=1) <= nowTime:
         try:
             accuWheader = requests.get("https://dataservice.accuweather.com/currentconditions/v1/208194?apikey=gYcIOAnOquMbLz9GE2kbAFuyh5QQ6ceSd&language=fa-ir")
             if accuWheader.status_code == 200:
@@ -117,7 +117,7 @@ class postStatusToHome(APIView):
         hum = float(hum)
         motion = bool(motion)
         gas = int(gas)
-        distance = int(gas)
+        distance = int(distance)
         # gereftan khane
         home = models.Home.objects.filter(uuid=uuid).first()
         
@@ -187,6 +187,7 @@ class postStatusToHome(APIView):
             home.total_score = last_total_score + 1
         # save kardan taghirat
         home.save()
+        print(gas);
         userPackage = models.Package.objects.all().filter(user = self.request.user, enabled = True).first()
         userMotion = apiModels.MotionDetectors.objects.get(user = self.request.user)
         if userPackage.name == "خروج از منزل":
@@ -201,7 +202,7 @@ class postStatusToHome(APIView):
             pass
             # smsSendApi(meseage="اخطار: خانه شما دچار حریق شده است.", request=self.request, userPhone=self.request.user.phone)
         
-        if gas >= 260:
+        if gas >= 200:
             pass
             # smsSendApi(meseage="اخطار: سطح گاز در خانه شما از حد عادی بالاتر رفته است.", request=self.request, userPhone=self.request.user.phone)
         

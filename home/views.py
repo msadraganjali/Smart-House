@@ -107,7 +107,7 @@ class DeviceListView(ListView):
             context['device13'] = models.device.objects.all().filter(user = self.request.user)[12]
             context['device14'] = models.device.objects.all().filter(user = self.request.user)[13]
             context['lastData'] = models.GrafData.objects.all().filter(user = self.request.user).last()
-            if context['lastData'].gas >= 100:
+            if context['lastData'].gas >= 200:
                 gasStatus = True
             else:
                 gasStatus = False
@@ -166,7 +166,7 @@ def post_device(request):
         
         if gas:
             gas = gas.gas
-            if gas >= 100:
+            if gas >= 200:
                 gasStatus = True
             else:
                 gasStatus = False
@@ -176,7 +176,7 @@ def post_device(request):
         
         if gas:
             distance = distance.distance
-            if gas >= 100:
+            if gas >= 200:
                 distanceStatus = True
             else:
                 distanceStatus = False
@@ -276,7 +276,7 @@ class listPackage(ListView):
         context['pack5'] = models.Package.objects.all().filter(user = self.request.user).order_by('id')[1]
         context['pack6'] = models.Package.objects.all().filter(user = self.request.user).order_by('id')[5]
         context['motion_detected'] = MotionDetectors.objects.all().filter(user = self.request.user).first()
-        if models.GrafData.objects.all().filter(user = self.request.user).last().gas >= 100:
+        if models.GrafData.objects.all().filter(user = self.request.user).last().gas >= 200:
             gasStatus = True
         else:
             gasStatus = False
@@ -335,7 +335,7 @@ def sendPackage(request):
     
     if gas:
         gas = gas.gas
-        if gas >= 100:
+        if gas >= 200:
             gasStatus = True
         else:
             gasStatus = False
@@ -345,7 +345,7 @@ def sendPackage(request):
     
     if gas:
         distance = distance.distance
-        if gas >= 100:
+        if gas >= 200:
             distanceStatus = True
         else:
             distanceStatus = False

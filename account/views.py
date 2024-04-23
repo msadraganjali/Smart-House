@@ -45,7 +45,7 @@ def profile(request):
     
     if gas:
         gas = gas.gas
-        if gas >= 100:
+        if gas >= 200:
             gasStatus = True
         else:
             gasStatus = False
@@ -55,7 +55,7 @@ def profile(request):
     
     if gas:
         distance = distance.distance
-        if gas >= 100:
+        if gas >= 200:
             distanceStatus = True
         else:
             distanceStatus = False
@@ -262,7 +262,7 @@ class RegisterFormView(FormView):
             AccuWheather.objects.create(temp = cityTemp, user = user, status = cityStatus)
         # motionDetector instance creation
         MotionDetectors.objects.create(user = user, status=False)
-        homeModel.GrafData.objects.create(user = user, e_usage=0, is_fire=0, temp=0.0, isEarthHum=0, hum=0.0, gas=0, motion=0, temp2 = 0.00)
+        homeModel.GrafData.objects.create(user = user, e_usage=0, is_fire=0, temp=0.0, isEarthHum=0, hum=0.0, gas=0, motion=0, temp2 = 0.00, distance = 0)
         return super().form_valid(form)
 
 # fucntion marbot be logout kardan
