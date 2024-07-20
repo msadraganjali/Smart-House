@@ -31,12 +31,12 @@ def profile(request):
     isEarthHum = homeModel.GrafData.objects.filter(user=user.uuid).last()
     motion = homeModel.GrafData.objects.filter(user=user.uuid).last()
     gas = homeModel.GrafData.objects.filter(user=user.uuid).last()
-    temp2 = gas
-    distance = gas
+    temp2 = homeModel.GrafData.objects.filter(user=user.uuid).last()
+    distance = homeModel.GrafData.objects.filter(user=user.uuid).last()
     
-    accuWheatherValue = updateAccuWheather(request)
-    cityTemp = accuWheatherValue.temp
-    cityStatus = accuWheatherValue.status
+    # accuWheatherValue = updateAccuWheather(request)
+    cityTemp = 20.0
+    cityStatus = "ابر و خورشید"
     
     if motion:
         motion = motion.motion
@@ -53,7 +53,7 @@ def profile(request):
         gas = -1
         gasStatus = False
     
-    if gas:
+    if distance:
         distance = distance.distance
         if gas >= 200:
             distanceStatus = True

@@ -64,7 +64,7 @@
   let countdown = document.querySelector('.countdown');
   const output = countdown.innerHTML;
   
-  countdown.setAttribute('data-count', '2024-06-05T16:00:00Z');
+  countdown.setAttribute('data-count', '2024-07-05T16:00:00Z');
   
   const countDownDate = function() {
   let timeleft = new Date(countdown.getAttribute('data-count')).getTime() - new Date().getTime();

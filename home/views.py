@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 import requests
 from random import randint
 
@@ -120,7 +121,6 @@ class DeviceListView(ListView):
             else:
                 context['package_alert'] = False
         return context
- 
     
 def post_device(request):
     if request.method == 'GET':
@@ -265,7 +265,9 @@ class listPackage(ListView):
     model = models.Package
     context_object_name = 'packs'
     template_name = 'home/listPacks.html'
-    queryset = models.Package.objects.all().order_by('-id').filter(visible = True)
+    
+    def get_queryset(self):
+        queryset = models.Package.objects.all().order_by('-id').filter(visible = True, user = self.request.user.uuid)
     
     def get_context_data(self , **kwargs):
         context = super().get_context_data(**kwargs)           

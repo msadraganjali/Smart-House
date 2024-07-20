@@ -43,9 +43,9 @@ def updateAccuWheather(request):
 
 def smsSendApi(request, meseage, userPhone):
     try:
-        api = KavenegarAPI(settings.KAVENEGAR_API['API_KEY'])
+        api = KavenegarAPI("6D6C4C56394E573133774E544146544942697636594637316E436578576E736F6D42715A385776566139673D")
         params = {
-            'sender': f'{settings.KAVENEGAR_API['Call_Line']}',
+            'sender': '10008663',
             'receptor': f'{userPhone}',
             'message': f'{meseage}',
         } 
@@ -187,7 +187,6 @@ class postStatusToHome(APIView):
             home.total_score = last_total_score + 1
         # save kardan taghirat
         home.save()
-        print(gas);
         userPackage = models.Package.objects.all().filter(user = self.request.user, enabled = True).first()
         userMotion = apiModels.MotionDetectors.objects.get(user = self.request.user)
         if userPackage.name == "خروج از منزل":
