@@ -225,8 +225,8 @@ class getPhysicsOrder(generics.ListAPIView):
     def updateDevicesOfPackage(self, timeId):
         # queryset = get_object_or_404(models.TimeOfDevice, id=timeId)
         queryset = models.TimeOfDevice.objects.get(id=timeId)
-        deviceTime = queryset.time
-        deviceTime2 = queryset.time2
+        deviceTime = queryset.time # 12:00
+        deviceTime2 = queryset.time2 # 13:00
         nowTime = datetime.now()
         nowTime = nowTime.time()
         

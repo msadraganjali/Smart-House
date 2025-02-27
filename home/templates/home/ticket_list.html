@@ -1,0 +1,47 @@
+{% extends "account/base.html" %}
+<!-- forme register kardan karbar -->
+{% block content %}
+{% load static %}
+<section class="vh-100" style="background-color: #eee; font-family: 'Vazir' !important; text-align: right;">
+    <div class="container h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-lg-12 col-xl-11">
+                <div class="card text-black" style="border-radius: 25px;">
+                    <div class="card-body p-md-5">
+                        <div class="row justify-content-center">
+                            <div class="col-md-12 col-lg-8 col-xl-7 order-2 order-lg-1">
+                                <!-- title marbot be form -->
+                                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">لیست تیکت ها</p>
+                                <table class="table table-hover" dir="rtl">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">عنوان تیکت</th>
+                                            <th scope="col">شرح تیکت</th>
+                                            <th scope="col">زمان سخته شدن</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for ticket in tickets  %}
+                                        <tr>
+                                            <th scope="row"><a href="{% url 'home:ticket' ticket.id %}" class="btn btn-primary">جزیات</a></th>
+                                            <td>{{ ticket.title |striptags|truncatechars:10 }}</td>
+                                            <td>{{ ticket.description |striptags|truncatechars:10 }}</td>
+                                            <td>{{ ticket.created }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-8 col-lg-4 col-xl-5 d-flex align-items-center order-1 order-lg-2">
+                                <!-- load kardan image -->
+                                <img src="{% static 'ticket/ticket.jpg' %}" style="border-radius: 5%" class="img-fluid" alt="Sample image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

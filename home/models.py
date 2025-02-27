@@ -175,3 +175,25 @@ class TimeOfDevice(models.Model):
     
     def __str__(self):
         return self.package.name
+
+class Ticket(models.Model):
+    
+    PACKAGE_EDITING = 0
+    QUESTION_WRITING = 1
+    BUG_REPORTING = 2
+    TICKET_TYPE = (
+        (PACKAGE_EDITING, 'تغییر پکیج'),
+        (QUESTION_WRITING, 'پرسیدن سوال'),
+        (BUG_REPORTING, 'گزارش باگ'),
+    )
+    
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    type = models.IntegerField(choices=TICKET_TYPE)
+    created = models.DateTimeField(auto_now_add=True)
+    author = models.ForeignKey(User, related_name='tickets', on_delete=models.CASCADE)
+    response = models.TextField(null=True, blank=True)
+    is_response = models.BooleanField(default=False);
+
+    def __str__(self):
+        return f"{self.title}"

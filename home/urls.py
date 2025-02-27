@@ -13,5 +13,8 @@ urlpatterns = [
     path("about_me/", views.AboutMe.as_view(), name="about_me"),
     path("faq/", views.CommentListView.as_view() , name="faq"),
     path("listPacks/", views.listPackage.as_view() , name="listpacks"),
+    path("addTicket/", views.CreateTicketView.as_view() , name="addTicket"),
+    path("listTicket/", views.ListTicketsView.as_view() , name="listTicket"),
     path("sendPacks/", views.sendPackage , name="packs"),
+    path("ticket/<int:id>/", views.TicketDetail.as_view() , name="ticket"),
 ]

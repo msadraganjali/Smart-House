@@ -21,3 +21,8 @@ class PackagesCreationForm(forms.ModelForm):
     class Meta:
         model = models.Package
         fields = ["name", "enabled", "description", "visible"]
+
+class TicketCreationForm(forms.ModelForm):
+    class Meta:
+        model = models.Ticket
+        fields = ["title", "description", "type"]

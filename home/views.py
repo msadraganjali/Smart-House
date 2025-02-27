@@ -9,14 +9,14 @@ from api.models import MotionDetectors
 from home import models as homeModel
 
 from datetime import datetime, timedelta
-
+from jalali_date import datetime2jalali, date2jalali
 # import haye django
 
 from django.urls import reverse_lazy
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView, FormView, ListView
+from django.views.generic import TemplateView, FormView, ListView, CreateView, DetailView
 
 # klas safhe about me
 class CreateHomeView(FormView, LoginRequiredMixin):
@@ -424,3 +424,40 @@ def sendPackage(request):
     # check kardan queryset haye khane
     motion_detected = MotionDetectors.objects.all().filter(user = request.user).first()
     return render(request, 'account/profile.html', {"home": home, "user": user, "usage": usage, "e_total_usage": e_total_usage, "w_total_usage": w_total_usage, "g_total_usage": g_total_usage, "int_e" : int_e, "int_g" : int_g, "int_w" : int_w,"is_fire" : is_fire, "temp" : temp, "total_temp" : total_temp, "isEarthHum":isEarthHum, "hum": hum, "total_hum": total_hum, "motion" : motion, "total_gas" : gas, "gas" : gas, "cityStatus":cityStatus, "cityTemp":cityTemp, 'motion_detected' : motion_detected, "gasStatus" : gasStatus, "temp2":temp2, "distance" : distance})
+
+
+class CreateTicketView(FormView, LoginRequiredMixin):
+    template_name = "home/ticket_send.html"
+    success_url = reverse_lazy("profile")
+    form_class =  forms.TicketCreationForm
+#   age form bedone khata az taraf karbar bashe bashe...
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.save()
+        return super().form_valid(form)
+
+class ListTicketsView(LoginRequiredMixin, ListView):
+    template_name = "home/list_ticket.html"
+    context_object_name = 'tickets'
+    
+    def get_queryset(self):
+        queryset = models.Ticket.objects.filter(author=self.request.user).order_by('-created')
+        return queryset
+
+class TicketDetail(DetailView, LoginRequiredMixin):
+    template_name = 'home/ticket_view.html'
+    context_object_name = 'ticket'
+    
+    jalali_join = False
+    
+    def get_object(self):
+        id = self.kwargs.get('id')
+        ticket = get_object_or_404(models.Ticket.objects.all(), id=id)
+        self.jalali_join = datetime2jalali(ticket.created).strftime('%y/%m/%d _ %H:%M:%S')
+        return ticket
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["jdate"] = self.jalali_join
+        return context
+    
